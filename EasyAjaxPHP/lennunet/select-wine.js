@@ -13,31 +13,37 @@ $(document).ready(function(){
             //  Variable data contains the data we get from serverside
             $('#wines').html('');                           // Clear #wines div
 
-            if (button == 'all') { 
+            if      ( button == 'all'   ) { 
+
                 // If clicked buttons value is all, we post every wine
                 for (var i in data.red) {
-                    $('#wines').append('Red wine: ' + data.red[i] + '<br/>');
+                    $( '#wines' ).append(   'Red wine: '    + data.red[i] + '<br/>'     );
                 }
                 for (var i in data.white) {
-                    $('#wines').append('White wine: ' + data.white[i] + '<br/>');
+                    $( '#wines' ).append(   'White wine: '  + data.white[i] + '<br/>'   );
                 }
+
             }
-            else if (button == 'red') { 
+            else if ( button == 'red'    ) { 
+
                 // If clicked buttons value is red, we post only red wines
                 for (var i in data) {
                     $('#wines').append('Red wine: ' + data[i] + '<br/>');
                 }
+
             }
-            else if (button == 'white') { 
+            else if ( button == 'white' ) { 
+
                 // If clicked buttons value is white, we post only white wines
-                for (var i in data) {
-                    $('#wines').append('White wine: ' + data[i] + '<br/>');
+                for ( var i in data ) {
+                    $( '#wines' ).append(   'White wine: '  + data[ i ]     + '<br/>'  );
                 }
+
             }
 
         });
     
-        return false; // keeps the page from not refreshing 
+        return false;                                       // keeps the page from not refreshing 
     });
 });
 
