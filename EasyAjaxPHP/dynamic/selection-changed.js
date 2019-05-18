@@ -8,23 +8,29 @@ $( "#gender" ).on( "change", function() {
 		dataType	: "json",
 		success		: function( resultJSON ) {
 
-			var peopleHTML = "";
+			var starHTML = "";
+			var sex = "";
 
-			// Loop through Object and create peopleHTML
+			// Loop through Object and create starHTML
 			for ( var key in resultJSON ) {
 
 				if (resultJSON.hasOwnProperty( key ) ) {
-					peopleHTML += "<tr>";
-					peopleHTML += "<td>" + resultJSON[ key ][ "name"	] + "</td>";
-					peopleHTML += "<td>" + resultJSON[ key ][ "gender"	] + "</td>";
-					peopleHTML += "</tr>";
+					sex = resultJSON[ key ][ "gender"	];
+
+					starHTML += "<b>" 	+ resultJSON[ key ][ "name"	] + "</b>";
+					starHTML += "   ("  + resultJSON[ key ][ "shows"	] + ")";
+					starHTML += "<br />";
 				}
-
 			}
+			
+			var title = "<u><b>" ;
+			
+			if (sex == "M" ) title = title + "Actors"  		+ "</b></u> <br /> ";
+			if (sex == "F" ) title = title + "Actresses" 	+ "</b></u> <br /> ";
 
-			//	Replace table’s tbody html with peopleHTML
+			//	Replace table’s tbody html with starHTML
 			//
-			$( "#people tbody" ).html( peopleHTML );
+			$( "#container" ).html( title + starHTML );
 		}
 		//	END:::	success		: function(resultJSON) {
 		//

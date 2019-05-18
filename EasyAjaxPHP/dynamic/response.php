@@ -36,21 +36,18 @@
 
 	foreach( $listing as $star )
 	{
-		if ( $gender == $star[ "gender" ] ) array_push( $starlist, $star );
+		if ( $gender != $star[ "gender" ] ) continue;
+		
+		$shows = "";
+		foreach( $star["works"] as $movie ) $shows = $shows . "<i>" . $movie . "</i> ; &nbsp; ";
+
+		array_push( $starlist, 	[ 	"gender" 	=> $gender, 
+									"name" 		=> $star[ "name" ], 
+									"shows" 	=> $shows  
+								] 
+								);
 	}
 
-	/*
-	if ( $gender == 'M' ) 	array_push( $employees, [	'name'   =>'Jonathan Suh'       , 'gender' => 'male'	]	);
-	if ( $gender == 'M' ) 	array_push( $employees, [	'name'   =>'William Philbin'    , 'gender' => 'male'    ]	);
-	
-	if ( $gender == 'F' ) 	array_push( $employees, [	'name'   =>'Allison McKinnery'  , 'gender' => 'female'	]	);
-	if ( $gender == 'F' ) 	array_push( $employees, [	'name'   =>'Becky Borgster'     , 'gender' => 'female'  ]	);
-	if ( $gender == 'F' ) 	array_push( $employees, [	'name'   =>'Victoria Einsteen'  , 'gender' => 'female'  ]	);
-
-	$workersJSON = json_encode( $employees );
-	echo $workersJSON;
-	*/
-	
 	$starsJSON = json_encode( $starlist );
 	echo $starsJSON;
 
