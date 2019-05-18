@@ -52,8 +52,7 @@
 
 <br	/>
 
-<p>
-It's the most simple explanation of sending multiple objects from php.
+<p>It's the most simple explanation of sending multiple objects from php.
 Thanks.
 </p>
 

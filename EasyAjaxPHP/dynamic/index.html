@@ -1,0 +1,124 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title> Ajax demo </title>
+	
+	<script src="jquery-3.1.1.min.js">
+	</script>
+</head>
+
+<body>
+
+<div style="margin:200px;" >
+
+	<select id="gender" name="gender"	style="width:500px;height:30px;padding:5px;">
+		<option value="M"	style="padding:10px;" >Male	</option>
+		<option value="F"	style="padding:10px;" >Female	</option>
+	</select>
+
+	<table id="people" border="1" style="width:500px;line-height:30px;" >
+		<thead>
+			<th style="width:200px;padding:25px;">Name	</th>
+			<th style="width:200px;padding:25px;">Gender	</th>
+		</thead>
+
+		<tbody>
+		</tbody>
+	</table>
+
+<div>
+
+<div id="container" >
+	<p>Here is the complete list of the fan favorite movie stars who will be toplining 2015 movies:</p>
+
+</div>
+
+<div style="margin:20px 0 0 200px;">
+
+<a 	href="https://www.cinemablend.com/new/10-Most-Popular-Movie-Stars-World-According-Fandango-68913.html" 
+	target="_blank">more information about moive stars</a>
+
+<br	/>
+<br	/>
+<br	/>
+
+<h2>Acknowledgements</h2>
+
+<!--
+<a 	href=http://makitweb.com/return-json-response-ajax-using-jquery-php/
+	target="_blank">Here is the original source I got.</a>
+
+<br	/>
+
+<p>Return JSON response from AJAX using jQuery and PHP
+</p>
+
+<p>Author: Yogesh singh
+</p>
+<p>Author URL: http://makitweb.com/
+</p>
+<p>Author Email: yssyogesh@makitweb.com
+</p>
+<p>Tutorial Link: http://makitweb.com/return-json-response-ajax-using-jquery-php/
+</p>
+
+<br	/>
+
+<p>It's the most simple explanation of sending multiple objects from php.
+Thanks.
+</p>
+	
+-->
+
+</div>
+	
+</body>
+
+</html>
+
+<script src="selection-changed.js">
+</script>
+
+<!--
+<script>
+
+$( "#gender" ).on( "change", function() {
+	
+	$.ajax( {
+		type		: "POST",
+		data		: {	"gender": $( "#gender"	).val()		},
+		url			: "response.php",
+		dataType	: "json",
+		success		: function( resultJSON ) {
+
+			var peopleHTML = "";
+
+			// Loop through Object and create peopleHTML
+			for ( var key in resultJSON ) {
+
+				if (resultJSON.hasOwnProperty( key ) ) {
+					peopleHTML += "<tr>";
+					peopleHTML += "<td>" + resultJSON[ key ][ "name"	] + "</td>";
+					peopleHTML += "<td>" + resultJSON[ key ][ "gender"	] + "</td>";
+					peopleHTML += "</tr>";
+				}
+
+			}
+
+			//	Replace table��s tbody html with peopleHTML
+			//
+			$( "#people tbody" ).html( peopleHTML );
+		}
+		//	END:::	success		: function(resultJSON) {
+		//
+	} );
+	//	END:::	$.ajax(
+	//
+});
+
+</script>
+	
+-->
+  
