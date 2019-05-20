@@ -1,15 +1,15 @@
 
 $(document).ready(function(){
 
-    $(':submit').on('click', function() {                   // This event fires when a button is clicked
-        var button = $(this).val();
+    $( ':submit' ).on( 'click', function() {                // This event fires when a button is clicked
+        var button = $( this ).val();
 
         $.ajax( {                                           // ajax call starts
             url         : 'serverside.php',                 // JQuery loads serverside.php
-            data        : 'button=' + $(this).val(),        // Send value of the clicked button
+            data        : 'button=' + $( this ).val(),      // Send value of the clicked button
             dataType    : 'json',                           // Choosing a JSON datatype
         })
-        .done(function(data) { 
+        .done( function( data ) { 
             //  Variable data contains the data we get from serverside
             $('#wines').html('');                           // Clear #wines div
 
@@ -17,10 +17,10 @@ $(document).ready(function(){
 
                 // If clicked buttons value is all, we post every wine
                 for (var i in data.red) {
-                    $( '#wines' ).append(   'Red wine: '    + data.red[i] + '<br/>'     );
+                    $( '#wines' ).append(   'Red wine: '    + data.red[ i ]     + '<br/>'     );
                 }
                 for (var i in data.white) {
-                    $( '#wines' ).append(   'White wine: '  + data.white[i] + '<br/>'   );
+                    $( '#wines' ).append(   'White wine: '  + data.white[i]     + '<br/>'   );
                 }
 
             }
@@ -28,7 +28,7 @@ $(document).ready(function(){
 
                 // If clicked buttons value is red, we post only red wines
                 for (var i in data) {
-                    $('#wines').append('Red wine: ' + data[i] + '<br/>');
+                    $( '#wines' ).append(   'Red wine: '    + data[i]       + '<br/>');
                 }
 
             }
