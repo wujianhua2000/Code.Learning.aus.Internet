@@ -1,0 +1,126 @@
+
+https://through-the-interface.typepad.com/through_the_interface/2006/09/automatic_loadi.html
+
+
+Automatic loading of .NET modules
+
+Clearly it’s far from ideal to ask your users to load your application modules manually into AutoCAD whenever they need them, so over the years a variety of mechanisms have been put in place to enable automatic loading of applications – acad.lsp, acad.ads, acad.rx, the Startup Suite, to name but a few.
+
+The most elegant way to auto-load both ObjectARX and .NET applications is the demand-loading mechanism. This mechanism is based on information stored in the Registry describing the conditions under which modules should be loaded and how to load them.
+
+Demand loading is fairly straightforward and well documented in the ObjectARX Developer’s Guide (look under “demand loading applications”).
+
+Essentially the information can be stored in one of two places: under HKEY_LOCAL_MACHINE or under HKEY_CURRENT_USER. The decision on where to place the information will depend on a few things – mainly whether the application is to be shared across all users but also whether your application installer has the privileges to write to HKEY_LOCAL_MACHINE or not.
+
+It’s not really the place to talk about the pros and cons of these two locations – for the sake of simplicity the following examples show writing the information to HKEY_CURRENT_USER. Let’s start by looking at the root location for the demand-loading information:
+
+HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications
+
+Most of this location is logical enough (to humans), although the “ACAD-5001:409” piece needs a bit of explanation. This number has evolved over the releases, but right now 5001 means AutoCAD 2007 (it was 4001 for AutoCAD 2006, 301 for AutoCAD 2005 and 201 for AutoCAD 2004), and 409 is the “locale” corresponding to English.
+
+A more complete description of the meaning of this key is available to ADN members at:
+
+Registry values for ProductID and LocaleID for AutoCAD and the vertical products
+
+There are two common times to load a .NET application: on AutoCAD startup and on command invocation. ObjectARX applications might also be loaded on object detection, but as described in a previous post this is not something that is currently available to .NET applications.
+
+Let’s take the two common scenarios and show typical settings for the test application shown in this previous post.
+
+Loading modules on AutoCAD startup
+
+Under the root key (HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications) there is some basic information needed for our application. Firstly, you need to create a key just for our application: in this case I’ve used “MyTestApp” (as a rule it is recommended that professional software vendors prefix this string with their Registered Developer Symbol (RDS), which can be logged here, but for in-house development this is not necessary – just avoid beginning the key with “Acad” :-).
+
+Under our application key (HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications\MyTestApp), we then create a number of values:
+
+•DESCRIPTION A string value describing the purpose of the module
+
+•LOADCTRLS A DWORD (numeric) value describing the reasons for loading the app
+
+•MANAGED Another DWORD that should be set to "1" for .NET modules
+
+•LOADER A string value containing the path to the module
+
+The interesting piece is the LOADCTRLS value – the way to encode this is described in detail in the ObjectARX Developer’s Guide, but to save time I’ll cut to the chase: this needs to have a value of "2" for AutoCAD to load the module on startup.
+
+Here's a sample .reg file:
+
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications\MyTestApplication]
+
+"DESCRIPTION"="Kean's test application"
+
+"LOADCTRLS"=dword:00000002
+
+"MANAGED"=dword:00000001
+
+"LOADER"="C:\\My Path\\MyTestApp.dll"
+
+After merging it into the Registry, here's what happens when you launch AutoCAD:
+
+Regenerating model.
+
+Initializing - do something useful.
+
+AutoCAD menu utilities loaded.
+
+Command: tst
+
+This is the TST command.
+
+Command:
+
+Loading modules on command invocation
+
+To do this we need to add a little more information into the mix.
+
+Firstly we need to change the value of LOADCTRLS to "12" (or "c" in hexadecimal), which is actually a combination of 4 (which means "on command invocation") and 8 (which means "on load request"). For people that want to know the other flags that can be used, check out rxdlinkr.h in the inc folder of the ObjectARX SDK.
+
+Secondly we need to add a couple more keys, to contain information about our commands and command-groups.
+
+Beneath a "Commands" key (HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications\MyTestApplication\Commands), we'll create as many string values as we have commands, each with the name of the "global" command name, and the value of the "local" command name. As well as the "TST" command, I've added one more called "ANOTHER".
+
+Beneath a "Groups" key (HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications\MyTestApplication\Groups), we'll do the same for the command-groups we've registered our commands under (I used the default CommandMethod attribute that doesn't mention a group name, so this is somewhat irrelevant for our needs - I'll use "ASDK_CMDS" as an example, though).
+
+Here's the the updated .reg file:
+
+
+Windows Registry Editor Version 5.00
+
+ 
+
+[HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications\MyTestApplication]
+
+"DESCRIPTION"="Kean's test application"
+
+"LOADCTRLS"=dword:0000000c
+
+"MANAGED"=dword:00000001
+
+"LOADER"="C:\\My Path\\MyTestApp.dll"
+
+ 
+
+[HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications\MyTestApplication\Commands]
+
+"TST"="TST"
+
+"ANOTHER"="ANOTHER"
+
+[HKEY_CURRENT_USER\Software\Autodesk\AutoCAD\R17.0\ACAD-5001:409\Applications\MyTestApplication\Groups]
+
+"ASDK_CMDS"="ASDK_CMDS"
+
+And here's what happens when we launch AutoCAD this time, and run the tst command. You see the module is only loaded once the command is invoked:
+
+
+Regenerating model.
+
+AutoCAD menu utilities loaded.
+
+Command: tst
+
+Initializing - do something useful.This is the TST command.
+
+Command:
+ 
