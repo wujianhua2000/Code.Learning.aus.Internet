@@ -120,7 +120,9 @@ namespace TestChartLog10
 
             chart1.ChartAreas[ naming ].AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
             chart1.ChartAreas[ naming ].AxisY.MajorGrid.LineColor = Color.SkyBlue;
-            //chart1.ChartAreas[ naming ].AxisY.LineColor = Color.SkyBlue;
+
+            chart1.ChartAreas[ naming ].AxisX.LineColor = Color.SkyBlue;
+            chart1.ChartAreas[ naming ].AxisY.LineColor = Color.SkyBlue;
 
             chart1.ChartAreas[ naming ].AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Solid;
             chart1.ChartAreas[ naming ].AxisY.MinorGrid.LineColor = Color.SlateGray;  
