@@ -30,6 +30,7 @@
         {
             this.ButtonGroupBy = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.ButtonOpenXML = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ButtonGroupBy
@@ -51,11 +52,22 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // ButtonOpenXML
+            // 
+            this.ButtonOpenXML.Location = new System.Drawing.Point(121, 62);
+            this.ButtonOpenXML.Name = "ButtonOpenXML";
+            this.ButtonOpenXML.Size = new System.Drawing.Size(75, 23);
+            this.ButtonOpenXML.TabIndex = 2;
+            this.ButtonOpenXML.Text = "button2";
+            this.ButtonOpenXML.UseVisualStyleBackColor = true;
+            this.ButtonOpenXML.Click += new System.EventHandler(this.ButtonOpenXML_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 446);
+            this.Controls.Add(this.ButtonOpenXML);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ButtonGroupBy);
             this.Name = "FormMain";
@@ -68,6 +80,7 @@
 
         private System.Windows.Forms.Button ButtonGroupBy;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ButtonOpenXML;
     }
 }
 
