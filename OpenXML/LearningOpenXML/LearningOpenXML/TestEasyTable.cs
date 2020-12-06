@@ -11,30 +11,11 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace LearningOpenXML
 {
-    class TestEasyTable
+    /// <summary>
+    /// 
+    /// </summary>
+    class TestEasyTable : TestOpenDocx
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        private string NamePath = "d:\\123-test-openxml";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private string NameDocx = "easy-table.docx";
-
-        //.....................................................................
-        /// <summary>
-        /// 
-        /// </summary>
-        public TestEasyTable( )
-        {
-            bool miss = ( !Directory.Exists( this.NamePath ) );
-            if ( miss ) Directory.CreateDirectory( this.NamePath );
-
-            return;
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -96,14 +77,9 @@ namespace LearningOpenXML
             TableRow tabrow1 = MakeTableRowText( line1 );
             TableRow tabrow2 = MakeTableRowText( line2 );
 
-            //listrows.Add( tabrow1 );
-            //listrows.Add( tabrow2 );
-
             //// Add the rows to the table
             wordtable.AppendChild( tabrow1 );
             wordtable.AppendChild( tabrow2 );
-
-            //  return listrows;
 
             return;
         }
@@ -136,14 +112,6 @@ namespace LearningOpenXML
         {
             //// Create a new row
             TableRow rowline = new TableRow( );
-
-            ////// Add a cell to each column in the row
-            //TableCell tcName1 = new TableCell( new Paragraph( new Run( new Text( "wu jianhua" ) ) ) );
-            //TableCell tcId1 = new TableCell( new Paragraph( new Run( new Text( "1" ) ) ) );
-
-            ////// Add the cells to the row
-            //rowline.Append( tcName1 );
-            //rowline.Append( tcId1 );
 
             foreach ( string item in listing )
             {

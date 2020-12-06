@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LearningOpenXML
 {
-    class OpenXmlDocx
+    class TestOpenXlsx
     {
     }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using System.Diagnostics;
+
 namespace LearningOpenXML
 {
     public partial class FormMain : Form
@@ -25,10 +27,17 @@ namespace LearningOpenXML
         {
             TestEasyTable easytab = new TestEasyTable( );
             easytab.MakeWord( );
+            
+            MessageBox.Show( "Alles in Ordnung!!!" );
+            
+            Process.Start( "explorer.exe", easytab.NamePath );
+            
+            this.Close( );
 
             return;
         }
 
+        //.....................................................................
         /// <summary>
         /// 
         /// </summary>
@@ -38,11 +47,132 @@ namespace LearningOpenXML
         {
             TestMoreParagraph test = new TestMoreParagraph( );
 
-            test.Process( );
+            test.TestDocx( );
 
             MessageBox.Show( "Alles in Ordnung!!!" );
 
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+
             return;
         }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonCalcB24AC_Click( object sender, EventArgs e )
+        {
+            TestFormula_B2_4AC test = new TestFormula_B2_4AC( );
+
+            test.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+            
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonAnchorRCpressure_Click( object sender, EventArgs e )
+        {
+            TestAnchorRCpressure test = new TestAnchorRCpressure( );
+
+            test.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonFormula_2_Click( object sender, EventArgs e )
+        {
+            TestFormula_2 test = new TestFormula_2( );
+            test.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonSQRT_34_Click( object sender, EventArgs e )
+        {
+            TestFormula_SQRT34 test = new TestFormula_SQRT34( );
+            test.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonMoreLineFormula_Click( object sender, EventArgs e )
+        {
+            TestFormula_2lines test = new TestFormula_2lines( );
+            test.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonTable_Texts_Click( object sender, EventArgs e )
+        {
+            TestTable_none test = new TestTable_none( );
+            test.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        //.....................................................................
     }
 }

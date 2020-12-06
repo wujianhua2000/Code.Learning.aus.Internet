@@ -11,29 +11,29 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace LearningOpenXML
 {
-    class TestMoreParagraph
+    class TestMoreParagraph : TestOpenDocx
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        private string NamePath = "d:\\123-test-openxml";
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //private string NamePath = "d:\\123-test-openxml";
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private string NameDocx = "more-paragraph.docx";
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //private string NameDocx = "more-paragraph.docx";
 
-        //.....................................................................
-        /// <summary>
-        /// 
-        /// </summary>
-        public TestMoreParagraph( )
-        {
-            bool miss = ( !Directory.Exists( this.NamePath ) );
-            if ( miss ) Directory.CreateDirectory( this.NamePath );
+        ////.....................................................................
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public TestMoreParagraph( )
+        //{
+        //    bool miss = ( !Directory.Exists( this.NamePath ) );
+        //    if ( miss ) Directory.CreateDirectory( this.NamePath );
 
-            return;
-        }
+        //    return;
+        //}
 
         //.....................................................................
         /// <summary>
@@ -47,26 +47,46 @@ namespace LearningOpenXML
         ///     bool isEditable
         /// 
         /// </summary>
-        public void Process( )
+        //public void Process( )
+        //{
+        //    string docxfile = this.NamePath + "\\" + this.NameDocx;
+
+        //    using ( WordprocessingDocument wordocument = WordprocessingDocument.Create( docxfile, WordprocessingDocumentType.Document ) )
+        //    {
+        //        // Defines the MainDocumentPart            
+        //        MainDocumentPart mainDocxPart = wordocument.AddMainDocumentPart( );
+                
+        //        mainDocxPart.Document = this.GenerateDocument( );
+
+        //        //mainDocxPart.Document = new Document( );
+        //        //Body docxbody = mainDocxPart.Document.AppendChild( new Body( ) );
+        //        //this.Para1( docxbody );
+        //        //this.ParagraphMore( docxbody );
+
+        //        mainDocxPart.Document.Save( );
+        //    }
+
+        //    return;
+        //}
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override Document GenerateDocument( )
         {
-            string docxfile = this.NamePath + "\\" + this.NameDocx;
+            Body docxbody = new Body( );
 
-            using ( WordprocessingDocument wordocument = WordprocessingDocument.Create( docxfile, WordprocessingDocumentType.Document ) )
-            {
-                // Defines the MainDocumentPart            
-                MainDocumentPart mainDocxPart = wordocument.AddMainDocumentPart( );
-                mainDocxPart.Document = new Document( );
+            this.Para1( docxbody );
 
-                Body docxbody = mainDocxPart.Document.AppendChild( new Body( ) );
+            this.ParagraphMore( docxbody );
 
-                this.Para1( docxbody );
+            Document docx = new Document( );
 
-                this.ParagraphMore( docxbody );
+            docx.Append( docxbody );
 
-                mainDocxPart.Document.Save( );
-            }
-
-            return;
+            return docx;
         }
 
         //.....................................................................

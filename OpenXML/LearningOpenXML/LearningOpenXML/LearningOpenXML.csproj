@@ -54,11 +54,22 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenXmlDocx.cs" />
+    <Compile Include="HansOpenDocx.cs" />
+    <Compile Include="openxml\MathFunktion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAnchorRCpressure.cs" />
+    <Compile Include="TestDocxTableHead_ID.cs" />
     <Compile Include="TestEasyTable.cs" />
+    <Compile Include="TestFormula_2lines.cs" />
+    <Compile Include="TestFormula_B2_4AC.cs" />
+    <Compile Include="TestDocxTable.cs" />
+    <Compile Include="TestFormula_2.cs" />
+    <Compile Include="TestFormula_SQRT34.cs" />
     <Compile Include="TestMoreParagraph.cs" />
+    <Compile Include="TestOpenDocx.cs" />
+    <Compile Include="TestOpenXlsx.cs" />
+    <Compile Include="TestTable_none.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,9 +91,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="simple.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
