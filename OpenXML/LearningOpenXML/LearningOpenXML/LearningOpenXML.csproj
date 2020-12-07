@@ -59,6 +59,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAnchorRCpressure.cs" />
+    <Compile Include="TestDocxSectionHeader.cs" />
     <Compile Include="TestDocxTableHead_ID.cs" />
     <Compile Include="TestEasyTable.cs" />
     <Compile Include="TestFormula_2lines.cs" />

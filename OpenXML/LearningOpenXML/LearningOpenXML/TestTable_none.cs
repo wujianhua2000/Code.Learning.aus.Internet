@@ -8,6 +8,7 @@ using System.IO;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+
 namespace LearningOpenXML
 {
     class TestTable_none : TestOpenDocx
@@ -430,10 +431,40 @@ namespace LearningOpenXML
         private static Paragraph MakeTextLine2( )
         {
             string textlines =
-"中华网财经12月5日讯，2020年，百年不遇的新冠疫情席卷全球，全球化遭遇严重打击，世界经济陷入衰退，价值和族群空前撕裂。"+
-"面对百年未有之变局，由凤凰网、中国企业改革与发展研究会主办，人民日报出版社协办，凤凰网财经、"+
-"中华网财经承办的“2020凤凰网财经峰会”在北京举办，"+
-"本届峰会以“破局与新生”为主题，盛邀政商学界顶级嘉宾，围绕全球和中国经济发展建言献策，凝聚共识。";
+"中华网财经12月5日讯，2020年，百年不遇的新冠疫情席卷全球，全球化遭遇严重打击，世界经济陷入衰退，价值和族群空前撕裂。" +
+"面对百年未有之变局，由凤凰网、中国企业改革与发展研究会主办，人民日报出版社协办，凤凰网财经、" +
+"中华网财经承办的“2020凤凰网财经峰会”在北京举办，" +
+"本届峰会以“破局与新生”为主题，盛邀政商学界顶级嘉宾，围绕全球和中国经济发展建言献策，凝聚共识。" +
+
+"All eyes are on Georgia ahead of Trump's rally and Senate debate																																									" +
+"Updated 10:56 AM ET, Sat December 5, 2020                                                                                                                                                                                          " +
+"(CNN) - The eyes of the political universe will turn to Georgia this weekend, as the voter registration deadline for January's Senate runoffs approaches.                                                                          " +
+"Each side is desperately trying to motivate their party before the Monday deadline and early voting begins on December 14.                                                                                                         " +
+"Former President Barack Obama and former state House minority leader Stacey Abrams held a virtual event for Democratic Senate challengers Jon Ossoff and Raphael Warnock on Friday,                                                " +
+"while Vice President Mike Pence rallied for the Republicans.                                                                                                                                                                       " +
+"Next in the frenzied rush is President Donald Trump's own rally on Saturday to elect Sens. David Perdue and Kelly Loeffler and protect the party's control of the chamber.                                                         " +
+"Then on Sunday, Loeffler and Warnock will participate in a debate hosted by the Atlanta Press Club.                                                                                                                                " +
+"The focus on Georgia comes as the state is ravaged by the coronavirus pandemic.                                                                                                                                                    " +
+"It reported its highest number of cases in a single day on Friday -- 5,023 -- and saw the postponement of the Georgia-Vanderbilt football game partially because of Covid-19.                                                      " +
+"Trump is faced with the task of motivating his own supporters to vote for the two Republican senators after he undermined their faith in the electoral process by falsely decrying that his election was rigged.                   " +
+"Since his loss in Georgia to President-elect Joe Biden, Trump has attacked top Republican officials in the state, including Gov.                                                                                                   " +
+"Brian Kemp and Georgia Secretary of State Brad Raffensperger. Kemp certified the results of Biden's victory, while Raffensperger has vociferously defended the state's election integrity.                                         " +
+"The President's continued refusal to concede has worried Republicans determined to prevent Democratic control of the Senate. A group of prominent Georgia Republicans, including former Gov.                                       " +
+"Nathan Deal and former Sens. Johnny Isakson and Saxby Chambliss, released a statement this week urging the party to unify, and shift its attention to electing Loeffler and Perdue.                                                " +
+"But there is little evidence that Trump will stop his unceasing attacks on the democratic process and the state officials in charge of the election.                                                                               " +
+"In the past few weeks, Trump publicly called Raffensperger an \"enemy of the people\" and privately called Kemp a \"moron\" and \"nut job,\" according to two sources.                                                             " +
+"The President also asked in a recent phone call why Loeffler, who ran in a 20-person special election, did not secure a majority of votes on Election Day against Warnock, who received a plurality of the votes.                  " +
+"After no Senate candidate received 50% of the vote in November, the races turned to particularly nasty runoffs.                                                                                                                    " +
+"Democrats have charged that Perdue and Loeffler profited off the pandemic, saying their multi-million dollar stock trades drew the attention -- although no charges -- from the Justice Department.                                " +
+"Meanwhile, the Republican senators have said they were cleared during the investigations, and have called Ossoff and Warnock socialists who will destroy America. Democrats have rejected those attacks as false fear-mongering.   " +
+"Pence said on Friday that Republicans need to elect Perdue and Loeffler to defend the Trump administration's accomplishments over the past four years.                                                                             " +
+"\"We need to send them back because the Republican Senate majority could be the last line of defense preserving all that we've done to defend this nation,                                                                         " +
+"revive our economy, and preserve the god given liberties we hold dear,\" said Pence in Savannah.                                                                                                                                   " +
+"While Biden narrowly won Georgia -- the first time for a Democratic presidential nominee since Bill Clinton in 1992 -- Republicans have a number of advantages in the two races.                                                   " +
+"The state has not sent a Democrat to the Senate in 20 years. Last month, Perdue received tens of thousands of more votes than Ossoff. And Republicans are spending about $38 million more on ads than the Democrats,               " +
+"according to Kantar Media/CMAG data.                                                                                                                                                                                               " +
+"But Democrats are hopeful that the Republican intra-party fight, voter registration drives by Abrams and others and the state's rapidly diversifying suburbs will fuel their victories and flip the Senate.                        " +
+"\"The special election in Georgia is going to determine, ultimately, the course of the Biden presidency,\" said Obama at the virtual event on Friday.                                                                              ";
 
             Paragraph paragraph9 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidParagraphProperties = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
