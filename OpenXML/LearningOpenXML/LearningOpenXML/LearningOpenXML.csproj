@@ -70,6 +70,7 @@
     <Compile Include="TestMoreParagraph.cs" />
     <Compile Include="TestOpenDocx.cs" />
     <Compile Include="TestOpenXlsx.cs" />
+    <Compile Include="TestReadingExcelCells.cs" />
     <Compile Include="TestTable_none.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -92,6 +93,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="samples\openxml - 销售汇总表格.xlsx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

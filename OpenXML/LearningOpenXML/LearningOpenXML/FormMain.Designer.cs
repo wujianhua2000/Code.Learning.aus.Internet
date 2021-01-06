@@ -36,6 +36,8 @@
             this.ButtonSQRT_34 = new System.Windows.Forms.Button();
             this.ButtonMoreLineFormula = new System.Windows.Forms.Button();
             this.ButtonTable_Texts = new System.Windows.Forms.Button();
+            this.ButtonShowXlsx = new System.Windows.Forms.Button();
+            this.DialogFile = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // ButtonEasyTable
@@ -118,11 +120,26 @@
             this.ButtonTable_Texts.UseVisualStyleBackColor = true;
             this.ButtonTable_Texts.Click += new System.EventHandler(this.ButtonTable_Texts_Click);
             // 
+            // ButtonShowXlsx
+            // 
+            this.ButtonShowXlsx.Location = new System.Drawing.Point(468, 33);
+            this.ButtonShowXlsx.Name = "ButtonShowXlsx";
+            this.ButtonShowXlsx.Size = new System.Drawing.Size(402, 23);
+            this.ButtonShowXlsx.TabIndex = 8;
+            this.ButtonShowXlsx.Text = "打开一个 EXCEL 文件，输出内容";
+            this.ButtonShowXlsx.UseVisualStyleBackColor = true;
+            this.ButtonShowXlsx.Click += new System.EventHandler(this.ButtonShowXlsx_Click);
+            // 
+            // DialogFile
+            // 
+            this.DialogFile.FileName = "openFileDialog1";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 353);
+            this.ClientSize = new System.Drawing.Size(1268, 353);
+            this.Controls.Add(this.ButtonShowXlsx);
             this.Controls.Add(this.ButtonTable_Texts);
             this.Controls.Add(this.ButtonMoreLineFormula);
             this.Controls.Add(this.ButtonSQRT_34);
@@ -148,6 +165,8 @@
         private System.Windows.Forms.Button ButtonSQRT_34;
         private System.Windows.Forms.Button ButtonMoreLineFormula;
         private System.Windows.Forms.Button ButtonTable_Texts;
+        private System.Windows.Forms.Button ButtonShowXlsx;
+        private System.Windows.Forms.OpenFileDialog DialogFile;
     }
 }
 

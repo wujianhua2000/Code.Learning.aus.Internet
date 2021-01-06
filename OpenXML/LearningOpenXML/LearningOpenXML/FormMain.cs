@@ -174,5 +174,34 @@ namespace LearningOpenXML
         }
 
         //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonShowXlsx_Click( object sender, EventArgs e )
+        {
+            if ( this.DialogFile.ShowDialog( ) != System.Windows.Forms.DialogResult.OK ) return;
+
+            string namefile = this.DialogFile.FileName;
+
+            TestReadingExcelCells test = new TestReadingExcelCells( );
+
+            string namepath = "d:\\123-test-openxml";
+            string result = namepath + "\\excel-text-lines.csv";
+
+            test.ReadAsDataTable( namefile );
+            test.SaveInto( result );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+
+            Process.Start( "explorer.exe", namepath );
+
+            this.Close( );
+
+            return;
+        }
+
+        //.....................................................................
     }
 }
