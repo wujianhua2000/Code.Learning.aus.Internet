@@ -483,8 +483,8 @@ namespace LearningOpenXML
             OpxM.Run mathrun = new OpxM.Run( );
 
             //OpxM.RunProperties propertiesRUN = new OpxM.RunProperties( );
-            //OpxM.Style style2 = new OpxM.Style( ) { Val = OpxM.StyleValues.Plain };
-            //propertiesRUN.Append( style2 );
+            //OpxM.Style headingStyle = new OpxM.Style( ) { Val = OpxM.StyleValues.Plain };
+            //propertiesRUN.Append( headingStyle );
 
             //RunProperties runProperties6 = new RunProperties( );
             //RunFonts runFonts4 = new RunFonts( ) { Ascii = "Cambria Math", HighAnsi = "Cambria Math", EastAsia = "Cambria Math", ComplexScript = "Cambria Math" };
