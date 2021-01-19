@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="HelloWorldOpenXML.cs" />
     <Compile Include="LingGroupBy20200402.cs" />
+    <Compile Include="LinqGroupBy20210118.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

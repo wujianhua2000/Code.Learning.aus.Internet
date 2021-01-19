@@ -100,5 +100,18 @@ namespace LearningKurzCode
         }
 
         //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button2_Click( object sender, EventArgs e )
+        {
+            LinqGroupBy20210118.Process( );
+
+            return;
+        }
+
+        //.....................................................................
     }
 }
