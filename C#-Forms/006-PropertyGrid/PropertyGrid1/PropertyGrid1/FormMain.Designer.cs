@@ -1,4 +1,4 @@
-namespace PropertyGrid2
+namespace PropertyGrid1
 {
     partial class FormMain
     {
@@ -34,9 +34,9 @@ namespace PropertyGrid2
             // 
             // btnAssign
             // 
-            this.btnAssign.Location = new System.Drawing.Point(12, 12);
+            this.btnAssign.Location = new System.Drawing.Point(12, 11);
             this.btnAssign.Name = "btnAssign";
-            this.btnAssign.Size = new System.Drawing.Size(113, 23);
+            this.btnAssign.Size = new System.Drawing.Size(113, 21);
             this.btnAssign.TabIndex = 0;
             this.btnAssign.Text = "Assign Class";
             this.btnAssign.UseVisualStyleBackColor = true;
@@ -44,21 +44,22 @@ namespace PropertyGrid2
             // 
             // prpG
             // 
-            this.prpG.Location = new System.Drawing.Point(12, 50);
+            this.prpG.Location = new System.Drawing.Point(12, 46);
             this.prpG.Name = "prpG";
-            this.prpG.Size = new System.Drawing.Size(338, 193);
+            this.prpG.Size = new System.Drawing.Size(338, 178);
             this.prpG.TabIndex = 1;
             this.prpG.Click += new System.EventHandler(this.prpG_Click);
             // 
-            // Form1
+            // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 255);
+            this.ClientSize = new System.Drawing.Size(351, 235);
             this.Controls.Add(this.prpG);
             this.Controls.Add(this.btnAssign);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.Text = "PropertyGrid demo";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);
 
         }

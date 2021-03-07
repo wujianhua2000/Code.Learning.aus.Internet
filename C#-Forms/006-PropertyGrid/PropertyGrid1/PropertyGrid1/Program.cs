@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace PropertyGrid2
+namespace PropertyGrid1
 {
     static class Program
     {

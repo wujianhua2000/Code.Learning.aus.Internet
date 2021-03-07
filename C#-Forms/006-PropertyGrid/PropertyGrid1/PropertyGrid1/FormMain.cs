@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PropertyGrid2
+namespace PropertyGrid1
 {
     public partial class FormMain : Form
     {
@@ -22,6 +22,11 @@ namespace PropertyGrid2
         }
 
         private void prpG_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormMain_Load( object sender, EventArgs e )
         {
 
         }

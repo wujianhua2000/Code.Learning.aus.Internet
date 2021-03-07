@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace PropertyGrid2
+namespace PropertyGrid1
 {
     /// <summary>
     /// 
