@@ -59,7 +59,7 @@ namespace LearningOpenXML
             //---------------------------------------------
             Paragraph paragraph7 = new Paragraph( ) { RsidParagraphAddition = "00762968", RsidRunAdditionDefault = "00762968" };
 
-            Paragraph paragraph8 = MakeTextLine1( );
+            Paragraph paragraph8 = this.MakePageBreak( );
 
             Paragraph paragraph9 = MakeTextLine2( );
 
@@ -87,20 +87,13 @@ namespace LearningOpenXML
 
             paragraph11.Append( paragraphProperties5 );
 
-            SectionProperties sectionProperties1 = new SectionProperties( ) { RsidR = "001A467D" };
-            PageSize pageSize1 = new PageSize( ) { Width = ( UInt32Value ) 11906U, Height = ( UInt32Value ) 16838U };
-            PageMargin pageMargin1 = new PageMargin( ) { Top = 1440, Right = ( UInt32Value ) 1800U, Bottom = 1440, Left = ( UInt32Value ) 1800U, Header = ( UInt32Value ) 851U, Footer = ( UInt32Value ) 992U, Gutter = ( UInt32Value ) 0U };
-            Columns columns1 = new Columns( ) { Space = "425" };
-            DocGrid docGrid1 = new DocGrid( ) { Type = DocGridValues.Lines, LinePitch = 312 };
-
-            sectionProperties1.Append( pageSize1 );
-            sectionProperties1.Append( pageMargin1 );
-            sectionProperties1.Append( columns1 );
-            sectionProperties1.Append( docGrid1 );
+            SectionProperties sectionProperties1 = this.MakeSectionProperties( );
 
             body1.Append( table1 );
             body1.Append( paragraph7 );
             body1.Append( paragraph8 );
+            body1.Append( this.MakePageBreak( ) );
+
             body1.Append( paragraph9 );
             body1.Append( paragraph10 );
             body1.Append( paragraph11 );
@@ -111,6 +104,36 @@ namespace LearningOpenXML
             return document1;
         }
 
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private SectionProperties MakeSectionProperties( )
+        {
+            SectionProperties sectionProperties1 = new SectionProperties( ) { RsidR = "001A467D" };
+         
+            PageSize pageSize1 = new PageSize( ) { Width = ( UInt32Value ) 11906U, Height = ( UInt32Value ) 16838U };
+            
+            PageMargin pageMargin1 = new PageMargin( ) { Top = 1440, Right = ( UInt32Value ) 1800U, Bottom = 1440, Left = ( UInt32Value ) 1800U, Header = ( UInt32Value ) 851U, Footer = ( UInt32Value ) 992U, Gutter = ( UInt32Value ) 0U };
+            
+            Columns columns1 = new Columns( ) { Space = "425" };
+            
+            DocGrid docGrid1 = new DocGrid( ) { Type = DocGridValues.Lines, LinePitch = 312 };
+
+            sectionProperties1.Append( pageSize1 );
+            sectionProperties1.Append( pageMargin1 );
+            sectionProperties1.Append( columns1 );
+            sectionProperties1.Append( docGrid1 );
+
+            return sectionProperties1;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private TableProperties MakeTableProperties( )
         {
             TableProperties tableProperties1 = new TableProperties( );
@@ -125,23 +148,36 @@ namespace LearningOpenXML
             return tableProperties1;
         }
 
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private TableGrid MakeTableGrid( )
         {
-            TableGrid tableGrid1 = new TableGrid( );
+            TableGrid docTableGrid = new TableGrid( );
+
             GridColumn gridColumn1 = new GridColumn( ) { Width = "2840" };
             GridColumn gridColumn2 = new GridColumn( ) { Width = "2841" };
             GridColumn gridColumn3 = new GridColumn( ) { Width = "2841" };
 
-            tableGrid1.Append( gridColumn1 );
-            tableGrid1.Append( gridColumn2 );
-            tableGrid1.Append( gridColumn3 );
-            return tableGrid1;
+            docTableGrid.Append( gridColumn1 );
+            docTableGrid.Append( gridColumn2 );
+            docTableGrid.Append( gridColumn3 );
+
+            return docTableGrid;
         }
 
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private TableRow MakeRowLine1( )
         {
             TableRow tableRow1 = new TableRow( ) { RsidTableRowAddition = "001A467D", RsidTableRowProperties = "00BC5CA7" };
 
+            //---------------------------------------------
             TableCell tableCell1 = new TableCell( );
 
             TableCellProperties tableCellProperties1 = new TableCellProperties( );
@@ -170,6 +206,7 @@ namespace LearningOpenXML
             tableCell1.Append( tableCellProperties1 );
             tableCell1.Append( paragraph1 );
 
+            //---------------------------------------------
             TableCell tableCell2 = new TableCell( );
 
             TableCellProperties tableCellProperties2 = new TableCellProperties( );
@@ -197,6 +234,7 @@ namespace LearningOpenXML
             RunFonts runFonts1 = new RunFonts( ) { Hint = FontTypeHintValues.EastAsia };
 
             runProperties1.Append( runFonts1 );
+
             Text text2 = new Text( );
             text2.Text = "1125489590";
 
@@ -208,6 +246,7 @@ namespace LearningOpenXML
             tableCell2.Append( tableCellProperties2 );
             tableCell2.Append( paragraph2 );
 
+            //---------------------------------------------
             TableCell tableCell3 = new TableCell( );
 
             TableCellProperties tableCellProperties3 = new TableCellProperties( );
@@ -229,6 +268,7 @@ namespace LearningOpenXML
 
             Paragraph paragraph3 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
+            //---------------------------------------------
             Run run3 = new Run( );
 
             RunProperties runProperties2 = new RunProperties( );
@@ -241,6 +281,7 @@ namespace LearningOpenXML
             run3.Append( runProperties2 );
             run3.Append( text3 );
 
+            //---------------------------------------------
             Run run4 = new Run( );
 
             RunProperties runProperties3 = new RunProperties( );
@@ -253,6 +294,7 @@ namespace LearningOpenXML
             run4.Append( runProperties3 );
             run4.Append( text4 );
 
+            //---------------------------------------------
             Run run5 = new Run( );
 
             RunProperties runProperties4 = new RunProperties( );
@@ -272,12 +314,19 @@ namespace LearningOpenXML
             tableCell3.Append( tableCellProperties3 );
             tableCell3.Append( paragraph3 );
 
+            //---------------------------------------------
             tableRow1.Append( tableCell1 );
             tableRow1.Append( tableCell2 );
             tableRow1.Append( tableCell3 );
+
             return tableRow1;
         }
 
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private TableRow MakeRowLine2( )
         {
             TableRow tableRow2 = new TableRow( ) { RsidTableRowAddition = "001A467D", RsidTableRowProperties = "00BC5CA7" };
@@ -396,45 +445,62 @@ namespace LearningOpenXML
             tableRow2.Append( tableCell4 );
             tableRow2.Append( tableCell5 );
             tableRow2.Append( tableCell6 );
+
             return tableRow2;
         }
 
+        //.....................................................................
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        private Paragraph MakeTextLine1( )
+        private Paragraph MakePageBreak( )
         {
-            Paragraph paragraph8 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidRunAdditionDefault = "001A467D" };
+            Paragraph paragraph = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
-            ParagraphProperties paragraphProperties2 = new ParagraphProperties( );
+            //---------------------------------------------
+            ParagraphProperties paragraphproperties = new ParagraphProperties( );
+            
             WidowControl widowControl1 = new WidowControl( );
+            
             Justification justification2 = new Justification( ) { Val = JustificationValues.Left };
 
-            paragraphProperties2.Append( widowControl1 );
-            paragraphProperties2.Append( justification2 );
+            paragraphproperties.Append( widowControl1 );
+            paragraphproperties.Append( justification2 );
 
+            paragraph.Append( paragraphproperties );
+
+            //---------------------------------------------
             Run run10 = new Run( );
-            Break break1 = new Break( ) { Type = BreakValues.Page };
+            
+            Break pagebreak = new Break( ) { Type = BreakValues.Page };
 
-            run10.Append( break1 );
-            BookmarkStart bookmarkStart1 = new BookmarkStart( ) { Name = "_GoBack", Id = "0" };
-            BookmarkEnd bookmarkEnd1 = new BookmarkEnd( ) { Id = "0" };
+            run10.Append( pagebreak );
 
-            paragraph8.Append( paragraphProperties2 );
-            paragraph8.Append( run10 );
-            paragraph8.Append( bookmarkStart1 );
-            paragraph8.Append( bookmarkEnd1 );
-            return paragraph8;
+            paragraph.Append( run10 );
+
+            //---------------------------------------------
+            //BookmarkStart bookmarkStart1 = new BookmarkStart( ) { Name = "_GoBack", Id = "0" };
+            //BookmarkEnd bookmarkEnd1 = new BookmarkEnd( ) { Id = "0" };
+
+            //paragraph.Append( bookmarkStart1 );
+            //paragraph.Append( bookmarkEnd1 );
+
+            return paragraph;
         }
 
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private static Paragraph MakeTextLine2( )
         {
             string textlines =
 "中华网财经12月5日讯，2020年，百年不遇的新冠疫情席卷全球，全球化遭遇严重打击，世界经济陷入衰退，价值和族群空前撕裂。" +
 "面对百年未有之变局，由凤凰网、中国企业改革与发展研究会主办，人民日报出版社协办，凤凰网财经、" +
 "中华网财经承办的“2020凤凰网财经峰会”在北京举办，" +
-"本届峰会以“破局与新生”为主题，盛邀政商学界顶级嘉宾，围绕全球和中国经济发展建言献策，凝聚共识。" +
+"本届峰会以“破局与新生”为主题，盛邀政商学界顶级嘉宾，围绕全球和中国经济发展建言献策，凝聚共识。\n" +
 
 "All eyes are on Georgia ahead of Trump's rally and Senate debate																																									" +
 "Updated 10:56 AM ET, Sat December 5, 2020                                                                                                                                                                                          " +

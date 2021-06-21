@@ -39,7 +39,7 @@ namespace LearningOpenXML
 
         //.....................................................................
         /// <summary>
-        /// 
+        /// easy paragraph
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

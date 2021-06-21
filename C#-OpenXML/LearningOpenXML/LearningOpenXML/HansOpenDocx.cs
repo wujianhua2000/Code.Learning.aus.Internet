@@ -236,6 +236,13 @@ namespace LearningOpenXML
             return script;
         }
 
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strBase"></param>
+        /// <param name="strDegree"></param>
+        /// <returns></returns>
         public static M.Radical MakeMathRadical( string strBase, string strDegree )
         {
             M.Radical radical = new M.Radical( );
