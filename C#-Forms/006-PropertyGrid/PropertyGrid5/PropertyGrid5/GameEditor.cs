@@ -11,6 +11,7 @@ namespace PropertyGrid5
 {
     class GameEditor: UITypeEditor
     {
+        //.....................................................................
         /// <summary>
         /// 
         /// </summary>
@@ -21,6 +22,7 @@ namespace PropertyGrid5
             return true;
         }
 
+        //.....................................................................
         /// <summary>
         /// 
         /// </summary>
@@ -42,5 +44,7 @@ namespace PropertyGrid5
 
             return;
         }
+
+        //.....................................................................
     }
 }

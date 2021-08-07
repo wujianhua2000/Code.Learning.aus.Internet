@@ -6,7 +6,10 @@ using System.Globalization;
 
 namespace PropertyGrid3
 {
-    class DrinkerClassConverter : BooleanConverter
+    /// <summary>
+    /// 
+    /// </summary>
+    class DrinkerConverter : BooleanConverter
     {
         /// <summary>
         /// 
@@ -18,9 +21,10 @@ namespace PropertyGrid3
         /// <returns></returns>
         public override object ConvertTo( ITypeDescriptorContext context, CultureInfo culture, object value, Type destType )
         {
-            return ( bool ) value ?              "Yes" : "Yes, of course";
+            return ( bool ) value ? "Yes" : "Yes, of course";
         }
 
+        //.....................................................................
         /// <summary>
         /// 
         /// </summary>

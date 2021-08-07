@@ -7,11 +7,16 @@ using System.ComponentModel;
 using System.Drawing.Design;
 using System.Globalization;
 
-
 namespace PropertyGrid5
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class GameValuesConverter : EnumConverter
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private Type _enumType;
 
         /// <summary>
@@ -35,6 +40,7 @@ namespace PropertyGrid5
             return destType == typeof( string );
         }
 
+        //.....................................................................
         /// <summary>
         /// 
         /// </summary>
@@ -49,10 +55,9 @@ namespace PropertyGrid5
 
             DescriptionAttribute dna = ( DescriptionAttribute ) Attribute.GetCustomAttribute( fi, typeof( DescriptionAttribute ) );
 
-            if ( dna != null )
-                return dna.Description;
-            else
-                return value.ToString( );
+            if ( dna != null ) return dna.Description;
+
+            return value.ToString( );
         }
 
         //.....................................................................
@@ -88,6 +93,7 @@ namespace PropertyGrid5
             return Enum.Parse( _enumType, ( string ) value );
         }
 
+        //.....................................................................
     }
 
 }

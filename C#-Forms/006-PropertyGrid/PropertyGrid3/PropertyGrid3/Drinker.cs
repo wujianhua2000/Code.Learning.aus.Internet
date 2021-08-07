@@ -5,14 +5,14 @@ using System.ComponentModel;
 
 namespace PropertyGrid3
 {
-    class PropertyGridSimpleDemoClass3
+    class Drinker
     {
         bool m_DrinkOrNot;
 
         [DisplayName("Drink or not")]
         [Description("Drink or not")]
         [Category("Make right decision")]
-        [TypeConverter(typeof(DrinkerClassConverter))]
+        [TypeConverter(typeof(DrinkerConverter))]
         public bool DrinkOrNot
         {
             get { return m_DrinkOrNot; }

@@ -6,12 +6,16 @@ using System.Drawing.Design;
 
 namespace PropertyGrid5
 {
-    enum GameValues
+    /// <summary>
+    /// 
+    /// </summary>
+    enum EnumGame
     {
         [Description( "Ê¯Í·" )]
         Stone,
 
-        [Description( "Scissors" )]
+        //[Description( "Scissors" )]
+        [Description( "¼ôµ¶" )]
         Scissors,
 
         [Description( "²¼" )]

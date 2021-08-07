@@ -6,20 +6,20 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PropertyGrid3
+namespace PropertyGrid5
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            Drinker pgsd = new Drinker();
+            GameClassDisplayer gcd = new GameClassDisplayer();
 
-            prpG.SelectedObject = pgsd;            
+            prpG.SelectedObject = gcd;
         }
     }
 }

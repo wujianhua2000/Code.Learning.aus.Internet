@@ -12,6 +12,7 @@ namespace PropertyGrid4
     class DrinkerDoses
     {
         DrinkDoses m_doses;
+
         [DisplayName("Doses")]
         [Description("Drinker doses")]
         [Category("Alcoholics drinking")]
