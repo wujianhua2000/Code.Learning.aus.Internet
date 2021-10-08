@@ -11,9 +11,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using OpxM = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestDocxTableHead_ID : TestOpenDocx
+    class TestDocxTableHead_ID : OpenDocxBase
     {
 
         //.....................................................................

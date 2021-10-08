@@ -9,16 +9,16 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestDocxSectionHeader : TestOpenDocx
+    class TestDocxSectionHeader : OpenDocxBase
     {
         //.....................................................................
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public Document GenerateDocument( )
+        public override Document GenerateDocument( )
         {
             Document document1 = new Document( ) { MCAttributes = new MarkupCompatibilityAttributes( ) { Ignorable = "w14 wp14" } };
             

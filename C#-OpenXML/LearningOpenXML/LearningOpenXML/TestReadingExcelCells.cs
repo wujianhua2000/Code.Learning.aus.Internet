@@ -9,7 +9,7 @@ using System.Text;
 
 using System.IO;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
     /// <summary>
     /// 
@@ -114,7 +114,7 @@ namespace LearningOpenXML
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="document"></param>
+        /// <param name="docxname"></param>
         /// <param name="cell"></param>
         /// <returns></returns>
         private string GetCellValue( SpreadsheetDocument document, Cell cell )

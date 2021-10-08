@@ -9,12 +9,15 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using M = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestDocxHeading01 : TestOpenDocx
+    /// <summary>
+    /// 
+    /// </summary>
+    class TestDocxHeading01 : OpenDocxBase
     {
         // Creates an Document instance and adds its children.
-        public Document GenerateDocument( )
+        public override Document GenerateDocument( )
         {
             Document document1 = new Document( ) { MCAttributes = new MarkupCompatibilityAttributes( ) { Ignorable = "w14 wp14" } };
 
@@ -53,10 +56,13 @@ namespace LearningOpenXML
             //---------------------------------------------
             Paragraph paragraph2 = new Paragraph( ) { RsidParagraphAddition = "00FE39AE", RsidParagraphProperties = "00FE39AE", RsidRunAdditionDefault = "00FE39AE" };
 
-            ParagraphStyleId paragraphStyleId1 = new ParagraphStyleId( ) { Val = "1" };
+            //ParagraphStyleId paraStyleID = new ParagraphStyleId( ) { Val = "1" };
+
+            ParagraphStyleId styleH1 = new ParagraphStyleId( ) { Val = "标题1" };
 
             ParagraphProperties paragraphProperties2 = new ParagraphProperties( );
-            paragraphProperties2.Append( paragraphStyleId1 );
+            //paragraphProperties2.Append( paraStyleID );
+            paragraphProperties2.Append( styleH1 );
 
             RunFonts runFonts2 = new RunFonts( ) { Hint = FontTypeHintValues.EastAsia };
 
@@ -79,14 +85,20 @@ namespace LearningOpenXML
             paragraph2.Append( bookmarkStart1 );
             paragraph2.Append( bookmarkEnd1 );
 
+            //.............................................
+            //  Heading 1
+            //  ApplyStyleToParagraph( this.wordocument, "OverdueAmount", "Overdue Amount", paragraph2 );
+            //
+            //this.ApplyStyleToParagraph( this.wordocument, "Heading1", "Heading 1", paragraph2 );
+
             //---------------------------------------------
 
-            SectionProperties sectionProperties1 = new SectionProperties( ) { RsidR = "00FE39AE" };
             PageSize pageSize1 = new PageSize( ) { Width = ( UInt32Value ) 11906U, Height = ( UInt32Value ) 16838U };
             PageMargin pageMargin1 = new PageMargin( ) { Top = 1440, Right = ( UInt32Value ) 1800U, Bottom = 1440, Left = ( UInt32Value ) 1800U, Header = ( UInt32Value ) 851U, Footer = ( UInt32Value ) 992U, Gutter = ( UInt32Value ) 0U };
             Columns columns1 = new Columns( ) { Space = "425" };
             DocGrid docGrid1 = new DocGrid( ) { Type = DocGridValues.Lines, LinePitch = 312 };
 
+            SectionProperties sectionProperties1 = new SectionProperties( ) { RsidR = "00FE39AE" };
             sectionProperties1.Append( pageSize1 );
             sectionProperties1.Append( pageMargin1 );
             sectionProperties1.Append( columns1 );
@@ -103,22 +115,154 @@ namespace LearningOpenXML
 
         //.....................................................................
         /// <summary>
+        /// Apply a style to a paragraph.
+        /// </summary>
+        /// <param name="worddoc"></param>
+        /// <param name="styleid"></param>
+        /// <param name="stylename"></param>
+        /// <param name="docpara"></param>
+        public void ApplyStyleToParagraph( WordprocessingDocument worddoc, string styleid, string stylename, Paragraph docpara )
+        {
+            // If the paragraph has no ParagraphProperties object, create one.
+            if ( docpara.Elements<ParagraphProperties>( ).Count( ) == 0 )
+            {
+                docpara.PrependChild<ParagraphProperties>( new ParagraphProperties( ) );
+
+                //Console.WriteLine( "docpara.Elements<ParagraphProperties>( ).Count( ) == 0" );
+            }
+
+            // Get the paragraph properties element of the paragraph.
+            ParagraphProperties docparapros = docpara.Elements<ParagraphProperties>( ).First( );
+
+            // Get the Styles wbookpart for this docxname.
+            StyleDefinitionsPart part = worddoc.MainDocumentPart.StyleDefinitionsPart;
+
+            // If the Styles wbookpart does not exist, add it and then add the style.
+            if ( part == null )
+            {
+                Console.WriteLine( "if ( part == null )" );
+
+                part = this.AddStylesPartToPackage( worddoc );
+
+                this.AddNewStyle( part, styleid, stylename );
+            }
+            else
+            {
+                Console.WriteLine( "if ( part == null ) else else else else else else" );
+
+                // If the style is not in the docxname, add it.
+                if ( IsStyleIdInDocument( worddoc, styleid ) != true )
+                {
+                    Console.WriteLine( "if ( IsStyleIdInDocument( worddoc, styleid ) != true )" );
+
+                    // No match on styleid, so let's try style name.
+                    string styleidFromName = GetStyleIdFromStyleName( worddoc, stylename );
+
+                    if ( styleidFromName == null )
+                    {
+                        AddNewStyle( part, styleid, stylename );
+                    }
+                    else
+                    {
+                        styleid = styleidFromName;
+                    }
+                }
+            }
+
+            // Set the style of the paragraph.
+            docparapros.ParagraphStyleId = new ParagraphStyleId( ) { Val = styleid };
+
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// Return styleid that matches the styleName, or null when there's no match.
+        /// </summary>
+        /// <param name="worddoc"></param>
+        /// <param name="styleName"></param>
+        /// <returns></returns>
+        public string GetStyleIdFromStyleName( WordprocessingDocument doc, string styleName )
+        {
+            StyleDefinitionsPart stylePart = doc.MainDocumentPart.StyleDefinitionsPart;
+            
+            string styleId = stylePart.Styles
+                                      .Descendants<StyleName>( )
+                                      .Where( s => s.Val.Value.Equals( styleName ) &&
+                                            ( ( ( Style ) s.Parent ).Type == StyleValues.Paragraph ) )
+                                      .Select( n => ( ( Style ) n.Parent ).StyleId ).FirstOrDefault( );
+         
+            return styleId;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// Add a StylesDefinitionsPart to the docxname.  Returns a reference to it.
+        /// </summary>
+        /// <param name="worddoc"></param>
+        /// <returns></returns>
+        public StyleDefinitionsPart AddStylesPartToPackage( WordprocessingDocument doc )
+        {
+            StyleDefinitionsPart part = doc.MainDocumentPart.AddNewPart<StyleDefinitionsPart>( );
+
+            Styles root = new Styles( );
+
+            root.Save( part );
+
+            return part;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// Return true if the style id is in the docxname, false otherwise.
+        /// </summary>
+        /// <param name="worddoc"></param>
+        /// <param name="styleid"></param>
+        /// <returns></returns>
+        public bool IsStyleIdInDocument( WordprocessingDocument doc, string styleid )
+        {
+            // Get access to the Styles element for this docxname.
+            //
+            Styles s = doc.MainDocumentPart.StyleDefinitionsPart.Styles;
+
+            // Check that there are styles and how many.
+            int n = s.Elements<Style>( ).Count( );
+
+            if ( n == 0 ) return false;
+
+            // Look for a match on styleid.
+            Style style = s.Elements<Style>( )
+                .Where( st => ( st.StyleId == styleid ) && ( st.Type == StyleValues.Paragraph ) )
+                .FirstOrDefault( );
+
+            if ( style == null ) return false;
+
+            return true;
+        }
+
+        //.....................................................................
+        /// <summary>
         /// 
-        /// https://docs.microsoft.com/en-us/office/open-xml/how-to-apply-a-style-to-a-paragraph-in-a-word-processing-document
+        /// https://docs.microsoft.com/en-us/office/open-xml/how-to-apply-a-style-to-a-paragraph-in-a-word-processing-docxname
         /// 
         /// Create a new style with the specified styleid and stylename and add it to the specified
-        /// style definitions part.
+        /// style definitions wbookpart.
         /// 
         /// 追加一个新的额 STYLE , 样式。
         /// </summary>
         /// <param name="styleDefinitionsPart"></param>
         /// <param name="styleid"></param>
         /// <param name="stylename"></param>
-        private static void AddNewStyle( StyleDefinitionsPart styleDefinitionsPart,            string styleid, string stylename )
+        private void AddNewStyle( StyleDefinitionsPart styleDefinitionsPart, string styleid, string stylename )
         {
-            // Get access to the root element of the styles part.
+            // Get access to the root element of the styles wbookpart.
             //
             Styles styles = styleDefinitionsPart.Styles;
+
+            //  test  test  test  test  test
+            //
+            foreach ( Style stt in styles ) Console.WriteLine( stt.StyleName + "; " + stt.StyleId );
+            Console.WriteLine( "styles.Count = " + styles.Count( ) );
 
             // Create a new paragraph style and specify some of the properties.
             //
@@ -140,13 +284,13 @@ namespace LearningOpenXML
 
             //---------------------------------------------
             Bold bold1 = new Bold( );
-            
+
             Color color1 = new Color( ) { ThemeColor = ThemeColorValues.Accent2 };
-            
+
             RunFonts font1 = new RunFonts( ) { Ascii = "Lucida Console" };
-            
+
             Italic italic1 = new Italic( );
-            
+
             // Specify a 12 point size.
             FontSize fontSize1 = new FontSize( ) { Val = "24" };
 
@@ -163,12 +307,13 @@ namespace LearningOpenXML
             // Add the run properties to the style.
             style.Append( styleRunProperties1 );
 
-            // Add the style to the styles part.
+            // Add the style to the styles wbookpart.
             styles.Append( style );
 
             return;
         }
 
+        //.....................................................................
         /// <summary>
         /// 
         /// </summary>

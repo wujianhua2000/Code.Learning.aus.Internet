@@ -11,9 +11,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using M = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestFormula_2 : TestOpenDocx
+    class TestFormula_2 : OpenDocxBase
     {
 
         //.....................................................................
@@ -52,10 +52,10 @@ namespace LearningOpenXML
 
             M.Fraction fraction1 = MakeRun3( );
 
-            officeMath1.Append( HansOpenDocx.MakeMathRun( "y", true ) );
-            officeMath1.Append( HansOpenDocx.MakeMathRun( "=" ) );
+            officeMath1.Append( OpenDocxMathExprs.MakeMathRun( "y", true ) );
+            officeMath1.Append( OpenDocxMathExprs.MakeMathRun( "=" ) );
             officeMath1.Append( fraction1 );
-            officeMath1.Append( HansOpenDocx.MakeMathRun( "+4" ) );
+            officeMath1.Append( OpenDocxMathExprs.MakeMathRun( "+4" ) );
 
             paragraph2.Append( officeMath1 );
 
@@ -89,9 +89,9 @@ namespace LearningOpenXML
         {
             M.SubSuperscript upperSCR = MakeScriptBoth( );
 
-            M.Superscript lowerSCR = HansOpenDocx.MakeScriptUpper( "x", "3" );   //.ma MakeScriptUpper( );
+            M.Superscript lowerSCR = OpenDocxMathExprs.MakeScriptUpper( "x", "3" );   //.ma MakeScriptUpper( );
 
-            return HansOpenDocx.MakeFraction( upperSCR, lowerSCR );
+            return OpenDocxMathExprs.MakeFraction( upperSCR, lowerSCR );
 
             //M.Fraction fraction1 = new M.Fraction( );
 
@@ -177,14 +177,14 @@ namespace LearningOpenXML
 
             M.SubSuperscriptProperties subSuperscriptProperties1 = new M.SubSuperscriptProperties( );
 
-            subSuperscriptProperties1.Append( HansOpenDocx.MakeControlProperties( true ) );
+            subSuperscriptProperties1.Append( OpenDocxMathExprs.MakeControlProperties( true ) );
 
-            M.Base base1 = HansOpenDocx.MakeMathBase( "A" );    // new M.Base( );
+            M.Base base1 = OpenDocxMathExprs.MakeMathBase( "A" );    // new M.Base( );
 
             //---------------------------------------------
-            M.SubArgument subArgument1 = HansOpenDocx.MakeScriptArgumentLower( "i" );
+            M.SubArgument subArgument1 = OpenDocxMathExprs.MakeScriptArgumentLower( "i" );
 
-            M.SuperArgument superArgument1 = HansOpenDocx.MakeScriptArgumentUpper( "w" );
+            M.SuperArgument superArgument1 = OpenDocxMathExprs.MakeScriptArgumentUpper( "w" );
 
             //---------------------------------------------
             subSuperscript1.Append( subSuperscriptProperties1 );

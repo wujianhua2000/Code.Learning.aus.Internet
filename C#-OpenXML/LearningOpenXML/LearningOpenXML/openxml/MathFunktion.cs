@@ -11,7 +11,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using M = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
     /// <summary>
     /// 

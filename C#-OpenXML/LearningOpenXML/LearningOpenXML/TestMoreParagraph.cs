@@ -9,9 +9,9 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestMoreParagraph : TestOpenDocx
+    class TestMoreParagraph : OpenDocxBase
     {
         ///// <summary>
         ///// 
@@ -21,7 +21,7 @@ namespace LearningOpenXML
         ///// <summary>
         ///// 
         ///// </summary>
-        //private string NameDocx = "more-paragraph.docx";
+        //private string NameXlsx = "more-paragraph.docx";
 
         ////.....................................................................
         ///// <summary>
@@ -49,7 +49,7 @@ namespace LearningOpenXML
         /// </summary>
         //public void Process( )
         //{
-        //    string docxfile = this.NamePath + "\\" + this.NameDocx;
+        //    string docxfile = this.NamePath + "\\" + this.NameXlsx;
 
         //    using ( WordprocessingDocument wordocument = WordprocessingDocument.Create( docxfile, WordprocessingDocumentType.Document ) )
         //    {
@@ -225,10 +225,10 @@ namespace LearningOpenXML
         //    //    // Create Document
         //    //    using ( WordprocessingDocument wordDocument = WordprocessingDocument.Create( mem, WordprocessingDocumentType.Document, true ) )
         //    //    {
-        //    //        // Add a main document part. 
+        //    //        // Add a main docxname wbookpart. 
         //    //        MainDocumentPart mainPart = wordDocument.AddMainDocumentPart( );
 
-        //    //        // Create the document structure and add some text.
+        //    //        // Create the docxname structure and add some text.
         //    //        mainPart.Document = new Document( );
         //    //        Body docBody = new Body( );
 

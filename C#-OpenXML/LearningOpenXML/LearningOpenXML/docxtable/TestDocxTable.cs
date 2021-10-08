@@ -11,12 +11,15 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using OpxM = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestDocxTable
+    /// <summary>
+    /// 
+    /// </summary>
+    class TestDocxTable : OpenDocxBase
     {
         // Creates an Document instance and adds its children.
-        public Document GenerateDocument( )
+        public override Document GenerateDocument( )
         {
             Document document1 = new Document( ) { MCAttributes = new MarkupCompatibilityAttributes( ) { Ignorable = "w14 wp14" } };
 
@@ -78,11 +81,12 @@ namespace LearningOpenXML
             Paragraph paragraph8 = new Paragraph( ) { RsidParagraphAddition = "00D1725A", RsidRunAdditionDefault = "00D1725A" };
 
             Paragraph paragraph9 = new Paragraph( ) { RsidParagraphAddition = "00D1725A", RsidRunAdditionDefault = "00D1725A" };
-            BookmarkStart bookmarkStart1 = new BookmarkStart( ) { Name = "_GoBack", Id = "0" };
-            BookmarkEnd bookmarkEnd1 = new BookmarkEnd( ) { Id = "0" };
+            
+            //BookmarkStart bookmarkStart1 = new BookmarkStart( ) { Name = "_GoBack", Id = "0" };
+            //BookmarkEnd bookmarkEnd1 = new BookmarkEnd( ) { Id = "0" };
 
-            paragraph9.Append( bookmarkStart1 );
-            paragraph9.Append( bookmarkEnd1 );
+            //paragraph9.Append( bookmarkStart1 );
+            //paragraph9.Append( bookmarkEnd1 );
 
             SectionProperties sectionProperties1 = new SectionProperties( ) { RsidR = "00D1725A" };
             PageSize pageSize1 = new PageSize( ) { Width = ( UInt32Value ) 11906U, Height = ( UInt32Value ) 16838U };

@@ -8,7 +8,7 @@
     <ProjectGuid>{37514F9F-C500-40FF-A6A4-932DF01EF793}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LearningOpenXML</RootNamespace>
+    <RootNamespace>Hans.Opxm</RootNamespace>
     <AssemblyName>LearningOpenXML</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -54,25 +54,37 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="HansOpenDocx.cs" />
+    <Compile Include="openxml\OpenDocxMathExprs.cs" />
+    <Compile Include="openxml\OpenDocxPicture.cs" />
+    <Compile Include="openxml\OpenDocxTable.cs" />
+    <Compile Include="openxml\OpenXlsxBase.cs" />
+    <Compile Include="openxml\OpenDocxNumbering.cs" />
+    <Compile Include="openxml\OpenDocxSettingsPart.cs" />
+    <Compile Include="openxml\OpenDocxStylesPartEffect.cs" />
+    <Compile Include="openxml\OpenDocxStylesPart.cs" />
     <Compile Include="openxml\MathFunktion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestAnchorRCpressure.cs" />
-    <Compile Include="TestDocxHeading01.cs" />
+    <Compile Include="docxmath\TestDocxMathAnchorRCpressure.cs" />
+    <Compile Include="docxstyle\TestDocxHeading01.cs" />
+    <Compile Include="docxstyle\TestDocxNumbering0105.cs" />
+    <Compile Include="docxstyle\TestDocxHelloStyleH1.cs" />
+    <Compile Include="docxpicture\TestDocxPicture3.cs" />
     <Compile Include="TestDocxSectionHeader.cs" />
-    <Compile Include="TestDocxTableHead_ID.cs" />
+    <Compile Include="TestDocxShowComments.cs" />
+    <Compile Include="docxtable\TestDocxTableHead_ID.cs" />
     <Compile Include="TestEasyTable.cs" />
-    <Compile Include="TestFormula_2lines.cs" />
-    <Compile Include="TestFormula_B2_4AC.cs" />
-    <Compile Include="TestDocxTable.cs" />
-    <Compile Include="TestFormula_2.cs" />
-    <Compile Include="TestFormula_SQRT34.cs" />
+    <Compile Include="docxmath\TestFormula_2lines.cs" />
+    <Compile Include="docxmath\TestFormula_B2_4AC.cs" />
+    <Compile Include="docxtable\TestDocxTable.cs" />
+    <Compile Include="docxmath\TestFormula_2.cs" />
+    <Compile Include="docxmath\TestFormula_SQRT34.cs" />
     <Compile Include="TestMoreParagraph.cs" />
-    <Compile Include="TestOpenDocx.cs" />
-    <Compile Include="TestOpenXlsx.cs" />
+    <Compile Include="openxml\OpenDocxBase.cs" />
+    <Compile Include="TestXlsxEmployees.cs" />
     <Compile Include="TestReadingExcelCells.cs" />
-    <Compile Include="TestTable_none.cs" />
+    <Compile Include="docxtable\TestTable_AllesGut.cs" />
+    <Compile Include="TestXlsxEmptySheet.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,7 +96,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="documents\more information aus internet.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,8 +108,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="samples\H1-list-style.docx" />
     <None Include="samples\openxml - 销售汇总表格.xlsx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

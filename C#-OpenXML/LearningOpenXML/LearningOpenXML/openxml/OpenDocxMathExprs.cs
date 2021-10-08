@@ -11,9 +11,12 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using M = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class HansOpenDocx
+    /// <summary>
+    /// 
+    /// </summary>
+    class OpenDocxMathExprs
     {
 
         /// <summary>
@@ -64,9 +67,9 @@ namespace LearningOpenXML
 
             RunProperties properties = new RunProperties( );
 
-            properties.Append( HansOpenDocx.MakeMathFont( ) );
+            properties.Append( OpenDocxMathExprs.MakeMathFont( ) );
 
-            if ( plainstyle ) properties.Append( HansOpenDocx.MakeMathFonStyle( ) );
+            if ( plainstyle ) properties.Append( OpenDocxMathExprs.MakeMathFonStyle( ) );
 
             //---------------------------------------------
             M.Text mathtext = new M.Text( );
@@ -87,7 +90,7 @@ namespace LearningOpenXML
         /// <returns></returns>
         public static M.Run MakeMathRunNoteMult( )
         {
-            return HansOpenDocx.MakeMathRun( "∙" );
+            return OpenDocxMathExprs.MakeMathRun( "∙" );
         }
 
         //.....................................................................
@@ -103,14 +106,14 @@ namespace LearningOpenXML
 
             //---------------------------------------------
             M.FunctionProperties funcProperties = new M.FunctionProperties( );
-            funcProperties.Append( HansOpenDocx.MakeControlProperties( ) );
+            funcProperties.Append( OpenDocxMathExprs.MakeControlProperties( ) );
 
             //---------------------------------------------
-            M.FunctionName funcNaming = HansOpenDocx.MakeFunctionName( strTextName );
+            M.FunctionName funcNaming = OpenDocxMathExprs.MakeFunctionName( strTextName );
 
             //---------------------------------------------
             M.DelimiterProperties delimProperties = new M.DelimiterProperties( );
-            delimProperties.Append( HansOpenDocx.MakeControlProperties( true ) );
+            delimProperties.Append( OpenDocxMathExprs.MakeControlProperties( true ) );
 
             M.Base mathBaseParms = new M.Base( );
             foreach ( OpenXmlElement value in parameter ) mathBaseParms.Append( value );
@@ -140,9 +143,9 @@ namespace LearningOpenXML
         {
             RunProperties propertiesRUN = new RunProperties( );
 
-            propertiesRUN.Append( HansOpenDocx.MakeMathFont() );
+            propertiesRUN.Append( OpenDocxMathExprs.MakeMathFont() );
 
-            if ( useItalic ) propertiesRUN.Append( HansOpenDocx.MakeMathFontItalic() );
+            if ( useItalic ) propertiesRUN.Append( OpenDocxMathExprs.MakeMathFontItalic() );
 
             //---------------------------------------------
             M.ControlProperties propertiesCTRL = new M.ControlProperties( );
@@ -161,7 +164,7 @@ namespace LearningOpenXML
         {
             M.FunctionName funcName = new M.FunctionName( );
 
-            M.Run funcRun = HansOpenDocx.MakeMathRun( funcstr, true );
+            M.Run funcRun = OpenDocxMathExprs.MakeMathRun( funcstr, true );
 
             funcName.Append( funcRun );
 
@@ -179,15 +182,15 @@ namespace LearningOpenXML
         {
             M.SubscriptProperties properties = new M.SubscriptProperties( );
 
-            properties.Append( HansOpenDocx.MakeControlProperties( true ) );
+            properties.Append( OpenDocxMathExprs.MakeControlProperties( true ) );
 
             //---------------------------------------------
             M.Subscript subscript = new M.Subscript( );
 
             subscript.Append( properties );
 
-            subscript.Append( HansOpenDocx.MakeMathBase( matBase) );
-            subscript.Append( HansOpenDocx.MakeScriptArgumentLower(matSubn) );
+            subscript.Append( OpenDocxMathExprs.MakeMathBase( matBase) );
+            subscript.Append( OpenDocxMathExprs.MakeScriptArgumentLower(matSubn) );
 
             return subscript;
         }
@@ -201,15 +204,15 @@ namespace LearningOpenXML
         {
             M.SuperscriptProperties properties = new M.SuperscriptProperties( );
             
-            properties.Append( HansOpenDocx.MakeControlProperties( true ) );
+            properties.Append( OpenDocxMathExprs.MakeControlProperties( true ) );
 
             //---------------------------------------------
             M.Superscript script = new M.Superscript( );
 
             script.Append( properties );
 
-            script.Append( HansOpenDocx.MakeMathBase( mathBase ) );
-            script.Append( HansOpenDocx.MakeScriptArgumentUpper( mathArgm ) );
+            script.Append( OpenDocxMathExprs.MakeMathBase( mathBase ) );
+            script.Append( OpenDocxMathExprs.MakeScriptArgumentUpper( mathArgm ) );
 
             return script;
         }
@@ -225,13 +228,13 @@ namespace LearningOpenXML
 
             M.SubSuperscriptProperties properties = new M.SubSuperscriptProperties( );
 
-            properties.Append( HansOpenDocx.MakeControlProperties( true ) );
+            properties.Append( OpenDocxMathExprs.MakeControlProperties( true ) );
 
             script.Append( properties );
 
-            script.Append( HansOpenDocx.MakeMathBase( strBase ) );
-            script.Append( HansOpenDocx.MakeScriptArgumentLower( strLower ) );
-            script.Append( HansOpenDocx.MakeScriptArgumentUpper( strUpper ) );
+            script.Append( OpenDocxMathExprs.MakeMathBase( strBase ) );
+            script.Append( OpenDocxMathExprs.MakeScriptArgumentLower( strLower ) );
+            script.Append( OpenDocxMathExprs.MakeScriptArgumentUpper( strUpper ) );
 
             return script;
         }
@@ -248,11 +251,11 @@ namespace LearningOpenXML
             M.Radical radical = new M.Radical( );
 
             M.RadicalProperties properties = new M.RadicalProperties( );
-            properties.Append( HansOpenDocx.MakeControlProperties( true ) );
+            properties.Append( OpenDocxMathExprs.MakeControlProperties( true ) );
 
-            M.Base mathBAS = HansOpenDocx.MakeMathBase( strBase );
+            M.Base mathBAS = OpenDocxMathExprs.MakeMathBase( strBase );
 
-            M.Degree mathDEG = HansOpenDocx.MakeMathDegree( strDegree );
+            M.Degree mathDEG = OpenDocxMathExprs.MakeMathDegree( strDegree );
 
             radical.Append( properties );
             radical.Append( mathBAS );
@@ -269,7 +272,7 @@ namespace LearningOpenXML
         /// <returns></returns>
         public static M.Degree MakeMathDegree( string value )
         {
-            M.Run mathrun = HansOpenDocx.MakeMathRun( value );
+            M.Run mathrun = OpenDocxMathExprs.MakeMathRun( value );
 
             M.Degree degree = new M.Degree( );
             degree.Append( mathrun );
@@ -287,7 +290,7 @@ namespace LearningOpenXML
         {
             M.Base mathbase = new M.Base( );
 
-            mathbase.Append( HansOpenDocx.MakeMathRun( value ) );
+            mathbase.Append( OpenDocxMathExprs.MakeMathRun( value ) );
 
             return mathbase;
         }
@@ -302,7 +305,7 @@ namespace LearningOpenXML
         {
             M.SuperArgument result = new M.SuperArgument( );
             
-            result.Append( HansOpenDocx.MakeMathRun( value ) );
+            result.Append( OpenDocxMathExprs.MakeMathRun( value ) );
 
             return result;
         }
@@ -317,7 +320,7 @@ namespace LearningOpenXML
         {
             M.SubArgument result = new M.SubArgument( );
 
-            result.Append( HansOpenDocx.MakeMathRun( value ) );
+            result.Append( OpenDocxMathExprs.MakeMathRun( value ) );
 
             return result;
         }
@@ -331,7 +334,7 @@ namespace LearningOpenXML
         {
             M.FractionProperties properties = new M.FractionProperties( );
             
-            properties.Append( HansOpenDocx.MakeControlProperties() );
+            properties.Append( OpenDocxMathExprs.MakeControlProperties() );
 
             return properties;
         }
@@ -353,7 +356,7 @@ namespace LearningOpenXML
             M.Denominator lowerDEN = new M.Denominator( );
             lowerDEN.Append( lower );
 
-            fraction.Append( HansOpenDocx.MakeFractionProperties( ) );
+            fraction.Append( OpenDocxMathExprs.MakeFractionProperties( ) );
             fraction.Append( upperNUM );
             fraction.Append( lowerDEN );
 
@@ -372,12 +375,12 @@ namespace LearningOpenXML
             M.Fraction fraction = new M.Fraction( );
 
             M.Numerator upperNUM = new M.Numerator( );
-            upperNUM.Append( HansOpenDocx.MakeMathRun( upper ) );
+            upperNUM.Append( OpenDocxMathExprs.MakeMathRun( upper ) );
 
             M.Denominator lowerDEN = new M.Denominator( );
-            lowerDEN.Append( HansOpenDocx.MakeMathRun( lower ) );
+            lowerDEN.Append( OpenDocxMathExprs.MakeMathRun( lower ) );
 
-            fraction.Append( HansOpenDocx.MakeFractionProperties( ) );
+            fraction.Append( OpenDocxMathExprs.MakeFractionProperties( ) );
             fraction.Append( upperNUM );
             fraction.Append( lowerDEN );
 

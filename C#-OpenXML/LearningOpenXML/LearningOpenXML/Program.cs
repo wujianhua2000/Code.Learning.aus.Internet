@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
     static class Program
     {

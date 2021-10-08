@@ -9,12 +9,12 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
     /// <summary>
     /// 
     /// </summary>
-    class TestEasyTable : TestOpenDocx
+    class TestEasyTable : OpenDocxBase
     {
         /// <summary>
         /// 

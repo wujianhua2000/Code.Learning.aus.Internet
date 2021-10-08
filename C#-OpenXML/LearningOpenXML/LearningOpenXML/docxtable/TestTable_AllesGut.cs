@@ -9,9 +9,12 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestTable_none : TestOpenDocx
+    /// <summary>
+    /// 表格最好的一个例子
+    /// </summary>
+    class TestTable_AllesGut : OpenDocxBase
     {
         //.....................................................................
         /// <summary>
@@ -41,20 +44,30 @@ namespace LearningOpenXML
             Body body1 = new Body( );
 
             //---------------------------------------------
-            Table table1 = new Table( );
+            //Table table1 = new Table( );
 
-            TableProperties tableProperties1 = MakeTableProperties( );
+            //TableProperties tableProperties1 = this.MakeTableProperties( );
 
-            TableGrid tableGrid1 = MakeTableGrid( );
+            //TableGrid tableGrid1 = this.MakeTableGrid( );
 
-            TableRow tableRow1 = MakeRowLine1( );
+            //TableRow tableRow1 = this.MakeRowLine1( );
 
-            TableRow tableRow2 = MakeRowLine2( );
+            //TableRow tableRow2 = this.MakeRowLine2( ); 
 
-            table1.Append( tableProperties1 );
-            table1.Append( tableGrid1 );
-            table1.Append( tableRow1 );
-            table1.Append( tableRow2 );
+            //table1.Append( tableProperties1 );
+            //table1.Append( tableGrid1 );
+            //table1.Append( tableRow1 );
+            //table1.Append( tableRow2 );
+
+            OpenDocxTable optab = new OpenDocxTable( 4, 8 );
+            List<string> list1 = new List<string> { "1", "1", "1", "1" };
+            List<string> list2 = new List<string> { "2", "2", "2", "2" };
+            optab.MakeTableRow( list1, 10 );
+            optab.MakeTableRow( list2, 10 );
+            Table table1 = optab.Tisch;
+
+            //TableBorders borders = optab.MakeTableBorders( 8 );
+            //tableProperties1.Append( borders );
 
             //---------------------------------------------
             Paragraph paragraph7 = new Paragraph( ) { RsidParagraphAddition = "00762968", RsidRunAdditionDefault = "00762968" };
@@ -139,27 +152,46 @@ namespace LearningOpenXML
             TableProperties tableProperties1 = new TableProperties( );
 
             TableStyle tableStyle1 = new TableStyle( ) { Val = "a3" };
+            
             TableWidth tableWidth1 = new TableWidth( ) { Width = "0", Type = TableWidthUnitValues.Auto };
+            
             TableLook tableLook1 = new TableLook( ) { Val = "04A0", FirstRow = true, LastRow = false, FirstColumn = true, LastColumn = false, NoHorizontalBand = false, NoVerticalBand = true };
 
             tableProperties1.Append( tableStyle1 );
             tableProperties1.Append( tableWidth1 );
             tableProperties1.Append( tableLook1 );
+            
             return tableProperties1;
         }
 
         //.....................................................................
         /// <summary>
+        /// 3 列的
         /// 
+        /// 1 磅约等于 0.03527 厘米,1 厘米约等于 28.35 磅
+        /// 
+        ///  1.8厘米约等于51磅
         /// </summary>
         /// <returns></returns>
         private TableGrid MakeTableGrid( )
         {
+            int w1 = ( int ) Math.Round( 30.0 * 56.6866, 0 );
+            int w2 = ( int ) Math.Round( 40.0 * 56.6866, 0 );
+            int w3 = ( int ) Math.Round( 50.0 * 56.6866, 0 );
+
             TableGrid docTableGrid = new TableGrid( );
 
-            GridColumn gridColumn1 = new GridColumn( ) { Width = "2840" };
-            GridColumn gridColumn2 = new GridColumn( ) { Width = "2841" };
-            GridColumn gridColumn3 = new GridColumn( ) { Width = "2841" };
+            //GridColumn gridColumn1 = new GridColumn( ) { Width = "2840" };
+            //GridColumn gridColumn2 = new GridColumn( ) { Width = "2841" };
+            //GridColumn gridColumn3 = new GridColumn( ) { Width = "2841" };
+
+            //GridColumn gridColumn1 = new GridColumn( ) { Width = w1.ToString() };
+            //GridColumn gridColumn2 = new GridColumn( ) { Width = w2.ToString( ) };
+            //GridColumn gridColumn3 = new GridColumn( ) { Width = w3.ToString( ) };
+
+            GridColumn gridColumn1 = new GridColumn( );//   { Width = w1.ToString( ) };
+            GridColumn gridColumn2 = new GridColumn( );//   { Width = w2.ToString( ) };
+            GridColumn gridColumn3 = new GridColumn( );//   { Width = w3.ToString( ) };
 
             docTableGrid.Append( gridColumn1 );
             docTableGrid.Append( gridColumn2 );
@@ -180,18 +212,7 @@ namespace LearningOpenXML
             //---------------------------------------------
             TableCell tableCell1 = new TableCell( );
 
-            TableCellProperties tableCellProperties1 = new TableCellProperties( );
-            TableCellWidth tableCellWidth1 = new TableCellWidth( ) { Width = "2840", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders1 = new TableCellBorders( );
-            BottomBorder bottomBorder1 = new BottomBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 48U, Space = ( UInt32Value ) 0U };
-            RightBorder rightBorder1 = new RightBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-
-            tableCellBorders1.Append( bottomBorder1 );
-            tableCellBorders1.Append( rightBorder1 );
-
-            tableCellProperties1.Append( tableCellWidth1 );
-            tableCellProperties1.Append( tableCellBorders1 );
+            TableCellProperties tableCellProperties1 = MakeCellStyle_0101( );
 
             Paragraph paragraph1 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
@@ -209,22 +230,7 @@ namespace LearningOpenXML
             //---------------------------------------------
             TableCell tableCell2 = new TableCell( );
 
-            TableCellProperties tableCellProperties2 = new TableCellProperties( );
-            TableCellWidth tableCellWidth2 = new TableCellWidth( ) { Width = "2841", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders2 = new TableCellBorders( );
-            TopBorder topBorder1 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-            LeftBorder leftBorder1 = new LeftBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-            BottomBorder bottomBorder2 = new BottomBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-            RightBorder rightBorder2 = new RightBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-
-            tableCellBorders2.Append( topBorder1 );
-            tableCellBorders2.Append( leftBorder1 );
-            tableCellBorders2.Append( bottomBorder2 );
-            tableCellBorders2.Append( rightBorder2 );
-
-            tableCellProperties2.Append( tableCellWidth2 );
-            tableCellProperties2.Append( tableCellBorders2 );
+            TableCellProperties tableCellProperties2 = MakeCellStyle_01_02( );
 
             Paragraph paragraph2 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
@@ -249,22 +255,7 @@ namespace LearningOpenXML
             //---------------------------------------------
             TableCell tableCell3 = new TableCell( );
 
-            TableCellProperties tableCellProperties3 = new TableCellProperties( );
-            TableCellWidth tableCellWidth3 = new TableCellWidth( ) { Width = "2841", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders3 = new TableCellBorders( );
-            TopBorder topBorder2 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-            LeftBorder leftBorder2 = new LeftBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-            BottomBorder bottomBorder3 = new BottomBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-            RightBorder rightBorder3 = new RightBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-
-            tableCellBorders3.Append( topBorder2 );
-            tableCellBorders3.Append( leftBorder2 );
-            tableCellBorders3.Append( bottomBorder3 );
-            tableCellBorders3.Append( rightBorder3 );
-
-            tableCellProperties3.Append( tableCellWidth3 );
-            tableCellProperties3.Append( tableCellBorders3 );
+            TableCellProperties tableCellProperties3 = MakeCellStyle_01_03( );
 
             Paragraph paragraph3 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
@@ -327,35 +318,98 @@ namespace LearningOpenXML
         /// 
         /// </summary>
         /// <returns></returns>
+        private static TableCellProperties MakeCellStyle_01_03( )
+        {
+            TopBorder topBorder2 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+            
+            LeftBorder leftBorder2 = new LeftBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+            
+            BottomBorder bottomBorder3 = new BottomBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+            
+            RightBorder rightBorder3 = new RightBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+
+            TableCellBorders tableCellBorders3 = new TableCellBorders( );
+
+            tableCellBorders3.Append( topBorder2 );
+            tableCellBorders3.Append( leftBorder2 );
+            tableCellBorders3.Append( bottomBorder3 );
+            tableCellBorders3.Append( rightBorder3 );
+
+            TableCellWidth tableCellWidth3 = new TableCellWidth( ) { Width = "2841", Type = TableWidthUnitValues.Dxa };
+
+            TableCellProperties tableCellProperties3 = new TableCellProperties( );
+
+            tableCellProperties3.Append( tableCellWidth3 );
+            tableCellProperties3.Append( tableCellBorders3 );
+
+            return tableCellProperties3;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private static TableCellProperties MakeCellStyle_01_02( )
+        {
+            TableCellProperties tableCellProperties2 = new TableCellProperties( );
+            TableCellWidth tableCellWidth2 = new TableCellWidth( ) { Width = "2841", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders2 = new TableCellBorders( );
+            TopBorder topBorder1 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+            LeftBorder leftBorder1 = new LeftBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+            BottomBorder bottomBorder2 = new BottomBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+            RightBorder rightBorder2 = new RightBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+
+            tableCellBorders2.Append( topBorder1 );
+            tableCellBorders2.Append( leftBorder1 );
+            tableCellBorders2.Append( bottomBorder2 );
+            tableCellBorders2.Append( rightBorder2 );
+
+            tableCellProperties2.Append( tableCellWidth2 );
+            tableCellProperties2.Append( tableCellBorders2 );
+            return tableCellProperties2;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private static TableCellProperties MakeCellStyle_0101( )
+        {
+            TableCellProperties tableCellProperties1 = new TableCellProperties( );
+            TableCellWidth tableCellWidth1 = new TableCellWidth( ) { Width = "2840", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders1 = new TableCellBorders( );
+            BottomBorder bottomBorder1 = new BottomBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 48U, Space = ( UInt32Value ) 0U };
+            RightBorder rightBorder1 = new RightBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+
+            tableCellBorders1.Append( bottomBorder1 );
+            tableCellBorders1.Append( rightBorder1 );
+
+            tableCellProperties1.Append( tableCellWidth1 );
+            tableCellProperties1.Append( tableCellBorders1 );
+            return tableCellProperties1;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private TableRow MakeRowLine2( )
         {
             TableRow tableRow2 = new TableRow( ) { RsidTableRowAddition = "001A467D", RsidTableRowProperties = "00BC5CA7" };
 
+            //---------------------------------------------
             TableCell tableCell4 = new TableCell( );
 
-            TableCellProperties tableCellProperties4 = new TableCellProperties( );
-            TableCellWidth tableCellWidth4 = new TableCellWidth( ) { Width = "2840", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders4 = new TableCellBorders( );
-            TopBorder topBorder3 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 48U, Space = ( UInt32Value ) 0U };
-            LeftBorder leftBorder3 = new LeftBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 48U, Space = ( UInt32Value ) 0U };
-            BottomBorder bottomBorder4 = new BottomBorder( ) { Val = BorderValues.Nil };
-            RightBorder rightBorder4 = new RightBorder( ) { Val = BorderValues.Nil };
-
-            tableCellBorders4.Append( topBorder3 );
-            tableCellBorders4.Append( leftBorder3 );
-            tableCellBorders4.Append( bottomBorder4 );
-            tableCellBorders4.Append( rightBorder4 );
-
-            tableCellProperties4.Append( tableCellWidth4 );
-            tableCellProperties4.Append( tableCellBorders4 );
+            TableCellProperties tableCellProperties4 = MakeCellStyle_02_01( );
 
             Paragraph paragraph4 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidParagraphProperties = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
-            ParagraphProperties paragraphProperties1 = new ParagraphProperties( );
-            Justification justification1 = new Justification( ) { Val = JustificationValues.Center };
-
-            paragraphProperties1.Append( justification1 );
+            ParagraphProperties paragraphProperties1 = MakeAlignmentCenter( );
 
             Run run6 = new Run( );
             Text text6 = new Text( );
@@ -369,53 +423,49 @@ namespace LearningOpenXML
             tableCell4.Append( tableCellProperties4 );
             tableCell4.Append( paragraph4 );
 
+            //---------------------------------------------
             TableCell tableCell5 = new TableCell( );
 
-            TableCellProperties tableCellProperties5 = new TableCellProperties( );
-            TableCellWidth tableCellWidth5 = new TableCellWidth( ) { Width = "2841", Type = TableWidthUnitValues.Dxa };
-
-            TableCellBorders tableCellBorders5 = new TableCellBorders( );
-            TopBorder topBorder4 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
-            LeftBorder leftBorder4 = new LeftBorder( ) { Val = BorderValues.Nil };
-
-            tableCellBorders5.Append( topBorder4 );
-            tableCellBorders5.Append( leftBorder4 );
-
-            tableCellProperties5.Append( tableCellWidth5 );
-            tableCellProperties5.Append( tableCellBorders5 );
+            TableCellProperties tableCellProperties5 = MakeCellStyle_02_02( );
 
             Paragraph paragraph5 = new Paragraph( ) { RsidParagraphAddition = "001A467D", RsidRunAdditionDefault = "001A467D" };
 
+            //-------------------------
             Run run7 = new Run( );
 
             RunProperties runProperties5 = new RunProperties( );
             RunFonts runFonts5 = new RunFonts( ) { Hint = FontTypeHintValues.EastAsia };
 
             runProperties5.Append( runFonts5 );
+
             Text text7 = new Text( );
-            text7.Text = "3489";
+            text7.Text = "3489 那就对方";
 
             run7.Append( runProperties5 );
             run7.Append( text7 );
 
+            //-------------------------
             Run run8 = new Run( );
 
             RunProperties runProperties6 = new RunProperties( );
             RunFonts runFonts6 = new RunFonts( ) { Hint = FontTypeHintValues.EastAsia };
 
             runProperties6.Append( runFonts6 );
+
             Text text8 = new Text( );
             text8.Text = "那就对方";
 
             run8.Append( runProperties6 );
             run8.Append( text8 );
 
+            //-------------------------
             paragraph5.Append( run7 );
             paragraph5.Append( run8 );
 
             tableCell5.Append( tableCellProperties5 );
             tableCell5.Append( paragraph5 );
 
+            //---------------------------------------------
             TableCell tableCell6 = new TableCell( );
 
             TableCellProperties tableCellProperties6 = new TableCellProperties( );
@@ -439,6 +489,8 @@ namespace LearningOpenXML
 
             paragraph6.Append( run9 );
 
+            //-------------------------
+
             tableCell6.Append( tableCellProperties6 );
             tableCell6.Append( paragraph6 );
 
@@ -447,6 +499,76 @@ namespace LearningOpenXML
             tableRow2.Append( tableCell6 );
 
             return tableRow2;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private ParagraphProperties MakeAlignmentCenter( )
+        {
+            
+            Justification justification1 = new Justification( ) { Val = JustificationValues.Center };
+
+            ParagraphProperties paragraphProperties1 = new ParagraphProperties( );
+            paragraphProperties1.Append( justification1 );
+            
+            return paragraphProperties1;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private static TableCellProperties MakeCellStyle_02_02( )
+        {
+            TableCellBorders tableCellBorders5 = new TableCellBorders( );
+
+            TopBorder topBorder4 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 18U, Space = ( UInt32Value ) 0U };
+            
+            LeftBorder leftBorder4 = new LeftBorder( ) { Val = BorderValues.Nil };
+
+            tableCellBorders5.Append( topBorder4 );
+            tableCellBorders5.Append( leftBorder4 );
+
+            TableCellProperties tableCellProperties5 = new TableCellProperties( );
+            
+            TableCellWidth tableCellWidth5 = new TableCellWidth( ) { Width = "2841", Type = TableWidthUnitValues.Dxa };
+
+            tableCellProperties5.Append( tableCellWidth5 );
+            tableCellProperties5.Append( tableCellBorders5 );
+
+            return tableCellProperties5;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private static TableCellProperties MakeCellStyle_02_01( )
+        {
+            TableCellProperties tableCellProperties4 = new TableCellProperties( );
+            
+            TableCellWidth tableCellWidth4 = new TableCellWidth( ) { Width = "2840", Type = TableWidthUnitValues.Dxa };
+
+            TableCellBorders tableCellBorders4 = new TableCellBorders( );
+            
+            TopBorder topBorder3 = new TopBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 48U, Space = ( UInt32Value ) 0U };
+            LeftBorder leftBorder3 = new LeftBorder( ) { Val = BorderValues.Single, Color = "auto", Size = ( UInt32Value ) 48U, Space = ( UInt32Value ) 0U };
+            BottomBorder bottomBorder4 = new BottomBorder( ) { Val = BorderValues.Nil };
+            RightBorder rightBorder4 = new RightBorder( ) { Val = BorderValues.Nil };
+
+            tableCellBorders4.Append( topBorder3 );
+            tableCellBorders4.Append( leftBorder3 );
+            tableCellBorders4.Append( bottomBorder4 );
+            tableCellBorders4.Append( rightBorder4 );
+
+            tableCellProperties4.Append( tableCellWidth4 );
+            tableCellProperties4.Append( tableCellBorders4 );
+            
+            return tableCellProperties4;
         }
 
         //.....................................................................
@@ -616,21 +738,21 @@ namespace LearningOpenXML
             paragraph9.Append( proofError1 );
             paragraph9.Append( run11 );
             
-            //paragraph9.Append( proofError2 );
-            //paragraph9.Append( run12 );
-            //paragraph9.Append( proofError3 );
-            //paragraph9.Append( run13 );
-            //paragraph9.Append( proofError4 );
-            //paragraph9.Append( run14 );
-            //paragraph9.Append( proofError5 );
-            //paragraph9.Append( run15 );
-            //paragraph9.Append( proofError6 );
-            //paragraph9.Append( run16 );
-            //paragraph9.Append( proofError7 );
-            //paragraph9.Append( run17 );
-            //paragraph9.Append( proofError8 );
-            //paragraph9.Append( run18 );
-            //paragraph9.Append( run19 );
+            //emptypara.Append( proofError2 );
+            //emptypara.Append( run12 );
+            //emptypara.Append( proofError3 );
+            //emptypara.Append( run13 );
+            //emptypara.Append( proofError4 );
+            //emptypara.Append( run14 );
+            //emptypara.Append( proofError5 );
+            //emptypara.Append( run15 );
+            //emptypara.Append( proofError6 );
+            //emptypara.Append( run16 );
+            //emptypara.Append( proofError7 );
+            //emptypara.Append( run17 );
+            //emptypara.Append( proofError8 );
+            //emptypara.Append( run18 );
+            //emptypara.Append( run19 );
 
             return paragraph9;
         }

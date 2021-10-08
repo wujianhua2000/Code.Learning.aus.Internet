@@ -11,9 +11,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using M = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    class TestFormula_SQRT34 :TestOpenDocx
+    class TestFormula_SQRT34 :OpenDocxBase
     {
         //.....................................................................
         /// <summary>
@@ -50,13 +50,13 @@ namespace LearningOpenXML
             M.OfficeMath officeMath1 = new M.OfficeMath();
 
             //---------------------------------------------
-            M.Radical mathpart1 = HansOpenDocx.MakeMathRadical( "x", "2" );
+            M.Radical mathpart1 = OpenDocxMathExprs.MakeMathRadical( "x", "2" );
 
-            M.Run mathpart2 = HansOpenDocx.MakeMathRun( "+" );
+            M.Run mathpart2 = OpenDocxMathExprs.MakeMathRun( "+" );
 
-            M.Radical mathpart3 = HansOpenDocx.MakeMathRadical( "y", "4" );
+            M.Radical mathpart3 = OpenDocxMathExprs.MakeMathRadical( "y", "4" );
 
-            M.Run mathpart4 = HansOpenDocx.MakeMathRun( "=w" );  
+            M.Run mathpart4 = OpenDocxMathExprs.MakeMathRun( "=w" );  
 
             //---------------------------------------------
             officeMath1.Append(mathpart1);

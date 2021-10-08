@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 using System.Diagnostics;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
     public partial class FormMain : Form
     {
@@ -87,7 +87,7 @@ namespace LearningOpenXML
         /// <param name="e"></param>
         private void ButtonAnchorRCpressure_Click( object sender, EventArgs e )
         {
-            TestAnchorRCpressure test = new TestAnchorRCpressure( );
+            TestDocxMathAnchorRCpressure test = new TestDocxMathAnchorRCpressure( );
 
             test.TestDocx( );
 
@@ -163,7 +163,7 @@ namespace LearningOpenXML
         /// <param name="e"></param>
         private void ButtonTable_Texts_Click( object sender, EventArgs e )
         {
-            TestTable_none test = new TestTable_none( );
+            TestTable_AllesGut test = new TestTable_AllesGut( );
             test.TestDocx( );
 
             MessageBox.Show( "Alles in Ordnung!!!" );
@@ -200,6 +200,131 @@ namespace LearningOpenXML
             this.Close( );
 
             return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// ButtonMontageHeading0103_Click is best
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonDocxHeading01_Click( object sender, EventArgs e )
+        {
+            TestDocxHeading01 test = new TestDocxHeading01( );
+            test.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 使用  H1-list-style.docx
+        /// 
+        /// 列出全部 stylex
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonListStyles_Click( object sender, EventArgs e )
+        {
+            OpenDocxBase test = new  OpenDocxBase( );
+            test.OpenExistDocx( "D:\\123-test-openxml\\h1.docx", false );
+
+            //MessageBox.Show( "Alles in Ordnung!!!" );
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 最好的一个
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonMontageHeading0103_Click( object sender, EventArgs e )
+        {
+            TestDocxNumbering0105 test = new TestDocxNumbering0105( );
+            test.TestDocx( );
+            
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonCreateSheet01_Click( object sender, EventArgs e )
+        {
+            TestXlsxEmployees test = new TestXlsxEmployees( );
+            test.TestXlsx( );
+
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonEmptySheet_Click( object sender, EventArgs e )
+        {
+            TestXlsxEmptySheet test = new TestXlsxEmptySheet( );
+            test.TestXlsx( );
+
+            Process.Start( "explorer.exe", test.NamePath );
+
+            this.Close( );
+            return;
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 可以废弃了，以 Test Docx Table Alles Gut 为准。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonDocxTable_Click( object sender, EventArgs e )
+        {
+            TestDocxTable easytab = new TestDocxTable( );
+            easytab.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+
+            Process.Start( "explorer.exe", easytab.NamePath );
+
+            this.Close( );
+        }
+
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonSectionParagraph_Click( object sender, EventArgs e )
+        {
+            TestDocxSectionHeader easytab = new TestDocxSectionHeader( );
+            easytab.TestDocx( );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+
+            Process.Start( "explorer.exe", easytab.NamePath );
+
+            this.Close( );
         }
 
         //.....................................................................

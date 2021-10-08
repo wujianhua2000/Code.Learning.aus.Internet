@@ -11,12 +11,12 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using OpxM = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
     /// <summary>
     /// 
     /// </summary>
-    class TestFormula_B2_4AC : TestOpenDocx
+    class TestFormula_B2_4AC : OpenDocxBase
     {
         ///// <summary>
         ///// 
@@ -26,7 +26,7 @@ namespace LearningOpenXML
         ///// <summary>
         ///// 
         ///// </summary>
-        //private string NameDocx = "easy-table.docx";
+        //private string NameXlsx = "easy-table.docx";
 
         ////.....................................................................
         ///// <summary>
@@ -34,7 +34,7 @@ namespace LearningOpenXML
         ///// </summary>
         //public void MakeWord( )
         //{
-        //    string docxfile = this.NamePath + "\\" + this.NameDocx;
+        //    string docxfile = this.NamePath + "\\" + this.NameXlsx;
 
         //    // Creates the new instance of the WordprocessingDocument class from the specified file
         //    // WordprocessingDocument.Open(String, Boolean) method
@@ -252,7 +252,7 @@ namespace LearningOpenXML
             OpxM.Run run10 = mathNumP002( );
             OpxM.Run run11 = mathA( );
 
-            denominator1.Append( HansOpenDocx.MakeMathRun( "2a") );
+            denominator1.Append( OpenDocxMathExprs.MakeMathRun( "2a") );
             denominator1.Append( run11 );
 
             return denominator1;

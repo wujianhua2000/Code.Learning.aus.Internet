@@ -11,21 +11,19 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 using M = DocumentFormat.OpenXml.Math;
 
-namespace LearningOpenXML
+namespace Hans.Opxm
 {
-    //.....................................................................
-    /// <summary>
-    /// 设备基础局部受压的公式
-    /// 
-    /// 在锚栓部分。技术规范的 65/94, 7.2.2 section
-    /// </summary>
-    class TestAnchorRCpressure : TestOpenDocx
+    class TestFormula_2lines : OpenDocxBase
     {
-        // Creates an Document instance and adds its children.
+        //.....................................................................
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Document GenerateDocument( )
         {
             Document document1 = new Document( ) { MCAttributes = new MarkupCompatibilityAttributes( ) { Ignorable = "w14 wp14" } };
-
+            
             document1.AddNamespaceDeclaration( "wpc", "http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" );
             document1.AddNamespaceDeclaration( "mc", "http://schemas.openxmlformats.org/markup-compatibility/2006" );
             document1.AddNamespaceDeclaration( "o", "urn:schemas-microsoft-com:office:office" );
@@ -44,49 +42,30 @@ namespace LearningOpenXML
 
             Body body1 = new Body( );
 
-            Paragraph paragraph1 = new Paragraph( ) { RsidParagraphMarkRevision = "009247D5", RsidParagraphAddition = "00632292", RsidRunAdditionDefault = "009247D5" };
+            //---------------------------------------------
+            Paragraph paragraph1 = MakeP1( );
+
+            Paragraph paragraph3 = MakeP2( );
 
             //---------------------------------------------
-            M.Paragraph paragraph2 = new M.Paragraph( );
-
-            M.OfficeMath officeMath1 = new M.OfficeMath( );
-
-            //---------------------------------------------
-            M.MathFunction mathFunction1 = MakeMath003_Function( );
-
-            officeMath1.Append( HansOpenDocx.MakeScriptLower( "N", "Rd,c" ) );
-            officeMath1.Append( HansOpenDocx.MakeMathRun( "=" ) );
-            officeMath1.Append( HansOpenDocx.MakeMathRun( "0.60" ) );
-            officeMath1.Append( HansOpenDocx.MakeMathRunNoteMult( ) );
-            officeMath1.Append( mathFunction1 );
-            officeMath1.Append( HansOpenDocx.MakeMathRunNoteMult( ) );
-            officeMath1.Append( HansOpenDocx.MakeScriptLower( "f", "ck" ) );
-
-            //---------------------------------------------
-            paragraph2.Append( officeMath1 );
-
-            paragraph1.Append( paragraph2 );
-
-            //---------------------------------------------
-            Paragraph paragraph3 = new Paragraph( ) { RsidParagraphMarkRevision = "009247D5", RsidParagraphAddition = "009247D5", RsidRunAdditionDefault = "009247D5" };
+            Paragraph paragraph5 = new Paragraph( ) { RsidParagraphMarkRevision = "00985895", RsidParagraphAddition = "00985895", RsidRunAdditionDefault = "00985895" };
 
             ParagraphProperties paragraphProperties1 = new ParagraphProperties( );
 
             ParagraphMarkRunProperties paragraphMarkRunProperties1 = new ParagraphMarkRunProperties( );
-            RunFonts runFonts20 = new RunFonts( ) { Hint = FontTypeHintValues.EastAsia };
+            RunFonts runFonts4 = new RunFonts( ) { Hint = FontTypeHintValues.EastAsia };
 
-            paragraphMarkRunProperties1.Append( runFonts20 );
+            paragraphMarkRunProperties1.Append( runFonts4 );
 
             paragraphProperties1.Append( paragraphMarkRunProperties1 );
             BookmarkStart bookmarkStart1 = new BookmarkStart( ) { Name = "_GoBack", Id = "0" };
             BookmarkEnd bookmarkEnd1 = new BookmarkEnd( ) { Id = "0" };
 
-            paragraph3.Append( paragraphProperties1 );
-            paragraph3.Append( bookmarkStart1 );
-            paragraph3.Append( bookmarkEnd1 );
-            Paragraph paragraph4 = new Paragraph( ) { RsidParagraphAddition = "00632292", RsidRunAdditionDefault = "00632292" };
+            paragraph5.Append( paragraphProperties1 );
+            paragraph5.Append( bookmarkStart1 );
+            paragraph5.Append( bookmarkEnd1 );
 
-            SectionProperties sectionProperties1 = new SectionProperties( ) { RsidR = "00632292" };
+            SectionProperties sectionProperties1 = new SectionProperties( ) { RsidRPr = "00985895", RsidR = "00985895" };
             PageSize pageSize1 = new PageSize( ) { Width = ( UInt32Value ) 11906U, Height = ( UInt32Value ) 16838U };
             PageMargin pageMargin1 = new PageMargin( ) { Top = 1440, Right = ( UInt32Value ) 1800U, Bottom = 1440, Left = ( UInt32Value ) 1800U, Header = ( UInt32Value ) 851U, Footer = ( UInt32Value ) 992U, Gutter = ( UInt32Value ) 0U };
             Columns columns1 = new Columns( ) { Space = "425" };
@@ -97,15 +76,45 @@ namespace LearningOpenXML
             sectionProperties1.Append( columns1 );
             sectionProperties1.Append( docGrid1 );
 
-            //---------------------------------------------
             body1.Append( paragraph1 );
             body1.Append( paragraph3 );
-            body1.Append( paragraph4 );
+            body1.Append( this.MakeP3() );
+
+            body1.Append( paragraph5 );
             body1.Append( sectionProperties1 );
 
             document1.Append( body1 );
-
+            
             return document1;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private Paragraph MakeP1( )
+        {
+            Paragraph paragraphNORM = new Paragraph( ) { RsidParagraphMarkRevision = "00985895", RsidParagraphAddition = "00337477", RsidRunAdditionDefault = "00985895" };
+
+            M.Justification justification = new M.Justification( ) { Val = M.JustificationValues.Right };
+            
+            M.ParagraphProperties paraProperties = new M.ParagraphProperties( );
+            paraProperties.Append( justification );
+
+            M.Paragraph paragraphMATH = new M.Paragraph( );
+
+            M.OfficeMath paraMathLine = new M.OfficeMath( );
+
+            M.Run run1 = OpenDocxMathExprs.MakeMathRun( "x=1+2/3=1.6667" ); // new M.Run( );
+
+            paraMathLine.Append( run1 );
+
+            paragraphMATH.Append( paraMathLine );
+            paragraphMATH.Append( paraProperties );
+
+            paragraphNORM.Append( paragraphMATH );
+
+            return paragraphNORM;
         }
 
         //.....................................................................
@@ -113,19 +122,48 @@ namespace LearningOpenXML
         /// 
         /// </summary>
         /// <returns></returns>
-        private M.MathFunction MakeMath003_Function( )
+        private Paragraph MakeP2( )
         {
-            M.Subscript parm1 = HansOpenDocx.MakeScriptLower( "A", "c,head" );
+            Paragraph paragraph3 = new Paragraph( ) { RsidParagraphMarkRevision = "00985895", RsidParagraphAddition = "00985895", RsidRunAdditionDefault = "00985895" };
 
-            M.Run parm2 = HansOpenDocx.MakeMathRun( ";" );
+            M.Paragraph paragraph4 = new M.Paragraph( );
 
-            M.Subscript parm3 = HansOpenDocx.MakeScriptLower( "A", "c,base" );
+            M.OfficeMath officeMath2 = new M.OfficeMath( );
 
-            M.Run parm4 = HansOpenDocx.MakeMathRun( "*;" );
+            M.Run run3 = OpenDocxMathExprs.MakeMathRun( "y=2+1" ); // new M.Run( );
 
-            M.Subscript parm5 = HansOpenDocx.MakeScriptLower( "A", "c,base" );
+            officeMath2.Append( run3 );
 
-            return HansOpenDocx.MakeMathFunction( "min", parm1, parm2, parm3, parm4, parm5 );
+            M.Justification justification = new M.Justification( ) { Val = M.JustificationValues.Left };
+
+            M.ParagraphProperties paraProperties = new M.ParagraphProperties( );
+            paraProperties.Append( justification );
+
+            paragraph4.Append( paraProperties );
+            paragraph4.Append( officeMath2 );
+
+            paragraph3.Append( paragraph4 );
+
+            return paragraph3;
+        }
+
+        private Paragraph MakeP3( )
+        {
+            Paragraph paragraph3 = new Paragraph( ) { RsidParagraphMarkRevision = "00985895", RsidParagraphAddition = "00985895", RsidRunAdditionDefault = "00985895" };
+
+            M.Paragraph paragraph4 = new M.Paragraph( );
+
+            M.OfficeMath officeMath2 = new M.OfficeMath( );
+
+            M.Run run3 = OpenDocxMathExprs.MakeMathRun( "z=x+y=2.667" );
+
+            officeMath2.Append( run3 );
+
+            paragraph4.Append( officeMath2 );
+
+            paragraph3.Append( paragraph4 );
+
+            return paragraph3;
         }
 
         //.....................................................................
