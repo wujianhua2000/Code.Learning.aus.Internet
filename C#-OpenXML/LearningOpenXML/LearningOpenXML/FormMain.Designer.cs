@@ -45,6 +45,7 @@
             this.ButtonEmptySheet = new System.Windows.Forms.Button();
             this.ButtonDocxTable = new System.Windows.Forms.Button();
             this.ButtonSectionParagraph = new System.Windows.Forms.Button();
+            this.ButtonSelectAllesText = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ButtonEasyTable
@@ -227,11 +228,23 @@
             this.ButtonSectionParagraph.UseVisualStyleBackColor = true;
             this.ButtonSectionParagraph.Click += new System.EventHandler(this.ButtonSectionParagraph_Click);
             // 
+            // ButtonSelectAllesText
+            // 
+            this.ButtonSelectAllesText.Location = new System.Drawing.Point(875, 378);
+            this.ButtonSelectAllesText.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonSelectAllesText.Name = "ButtonSelectAllesText";
+            this.ButtonSelectAllesText.Size = new System.Drawing.Size(419, 29);
+            this.ButtonSelectAllesText.TabIndex = 17;
+            this.ButtonSelectAllesText.Text = "select alles text";
+            this.ButtonSelectAllesText.UseVisualStyleBackColor = true;
+            this.ButtonSelectAllesText.Click += new System.EventHandler(this.ButtonSelectAllesText_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 528);
+            this.Controls.Add(this.ButtonSelectAllesText);
             this.Controls.Add(this.ButtonSectionParagraph);
             this.Controls.Add(this.ButtonDocxTable);
             this.Controls.Add(this.ButtonEmptySheet);
@@ -275,6 +288,7 @@
         private System.Windows.Forms.Button ButtonEmptySheet;
         private System.Windows.Forms.Button ButtonDocxTable;
         private System.Windows.Forms.Button ButtonSectionParagraph;
+        private System.Windows.Forms.Button ButtonSelectAllesText;
     }
 }
 

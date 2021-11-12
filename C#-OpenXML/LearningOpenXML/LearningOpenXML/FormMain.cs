@@ -328,5 +328,28 @@ namespace Hans.Opxm
         }
 
         //.....................................................................
+        /// <summary>
+        /// 选择一个 WORD 文件中的全部文本，为了定位特定的 文字字符串。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonSelectAllesText_Click( object sender, EventArgs e )
+        {
+            if ( this.DialogFile.ShowDialog( ) != System.Windows.Forms.DialogResult.OK ) return;
+
+            string wordname = this.DialogFile.FileName;
+
+            TestDocxSelectAllesText testdoc = new TestDocxSelectAllesText(  );
+
+            testdoc.OpenExistDocx( wordname );
+
+            MessageBox.Show( "Alles in Ordnung!!!" );
+
+            Process.Start( "explorer.exe", testdoc.NamePath );
+
+            return;
+        }
+
+        //.....................................................................
     }
 }

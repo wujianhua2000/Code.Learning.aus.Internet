@@ -122,13 +122,13 @@ namespace Hans.Opxm
             mathParagraph.Append( mathOffice );
 
             //---------------------------------------------
-            BookmarkStart bookmarkStart1 = new BookmarkStart( ) { Name = "_GoBack", Id = "0" };
-            BookmarkEnd bookmarkEnd1 = new BookmarkEnd( ) { Id = "0" };
+            //BookmarkStart bookmarkStart1 = new BookmarkStart( ) { Name = "_GoBack", Id = "0" };
+            //BookmarkEnd bookmarkEnd1 = new BookmarkEnd( ) { Id = "0" };
 
             normParagraph.Append( mathParagraph );
             
-            normParagraph.Append( bookmarkStart1 );
-            normParagraph.Append( bookmarkEnd1 );
+            //normParagraph.Append( bookmarkStart1 );
+            //normParagraph.Append( bookmarkEnd1 );
 
             SectionProperties sectionProperties1 = new SectionProperties( ) { RsidR = "0037253E" };
             
